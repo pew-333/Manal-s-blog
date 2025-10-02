@@ -1,0 +1,744 @@
+---
+title: "UFO sightings"
+format: html
+editor: visual
+author: Ashmita Biswas, Ihina Purohit, Manal Nazer, Shashwat Gupta
+---
+
+# UFO Sightings
+
+This data set focuses on **UFO sightings in the USA** throughout the years in different locations.
+
+In our exploratory data analysis (EDA), we have examined the data set through several steps: inspecting the data, making assumptions about the variables, validating those assumptions, summarising the information, applying filters, visualising the patterns, and finally, drawing meaningful insights.
+
+## Data Dictionary
+
+**Qualitative Variables**
+
+:   **city_area:** City or area where the sighting occurred (Character)
+
+:   **state:** State or region of the sighting (Character)
+
+:   **country:** Country of the sighting (Character)
+
+:   **ufo_shape:** Shape of the UFO observed (Character)
+
+:   **described_encounter_length:** Encounter length as described in text (Character)
+
+:   **description:** Description of the encounter (Character)
+
+:   **date_documented:** Date the sighting was documented (Character)
+
+**Quantitative Variables**
+
+:   **date_time:** Exact date and time of the sighting (Datetime (mdy h:m))
+
+:   **encounter_length:** Encounter length in seconds (Double)
+
+:   **latitude:** Latitude of the sighting location (Double)
+
+:   **longitude:** Longitude of the sighting location (Double)\
+
+## About the Data set and Our Focus
+
+-   This data set was compiled by The National UFO Reporting Center to document unusual aerial sightings reported over time.
+
+-   Our aim is to explore the possible reasons behind these sightings and understand why people perceived them as UFOs.
+
+### Setup
+
+```{r}
+#| label: setup
+#| echo: false
+
+library(readr)
+library(tidyverse)
+library(ggformula)
+library(mosaic)
+library(skimr)
+library(visdat) 
+library(naniar)
+library(janitor)
+library(tinytable)
+library(DT)
+library(crosstable)
+library(geofacet)
+library(ggplot2)
+```
+
+### Reading the Data
+
+```{r}
+
+ufo_sightings <- read_csv("~/Documents/irritating Class FOSEDA/Manal's blog/posts/data/ufosightings.csv") %>% 
+janitor::clean_names(case = "snake")
+ufo_sightings
+```
+
+```{r}
+glimpse(ufo_sightings)
+```
+
+### Checking for Missing Data
+
+```{r}
+ufo_sightings %>%
+  slice_sample(n =40000) %>%
+  visdat::vis_miss()
+```
+
+```{r}
+ufo_sightings %>%
+  slice_sample(n =40000) %>%
+  visdat::vis_dat()
+```
+
+Sampling 60,000 entries due to the vastness of the data set. From the results, we infer that there is no missing data.
+
+### Arranging the Data
+
+**Step 1** : Munging the qualitative variables into factors
+
+```{r}
+ufo_mod1 <- ufo_sightings %>% 
+mutate(location_city = as.factor(location_city),
+location_state = as.factor(location_state),
+location_country  = as.factor(location_country),
+data_shape = as.factor(data_shape)
+)
+ufo_mod1
+```
+
+**Step 2** : Relocating the columns in the following order:-
+
+:   DATE: Month, Date, Year
+
+:   TIME: Hour, Min
+
+:   Latitude (factor)
+
+:   Longitude (factor)
+
+:   Area (factor)
+
+:   State (factor)
+
+:   Country (factor)
+
+:   UFO shape (factor)
+
+:   Encounter length
+
+:   Encounter duration
+
+:   Documented date: Doc. Date, Doc. Month, Doc. Year
+
+:   Description
+
+```{r}
+ufo_mod2 <- ufo_mod1 %>% 
+dplyr:: relocate(date_sighted_day, dates_sighted_month, dates_sighted_year, dates_sighted_hour, dates_sighted_minute, location_coordinates_latitude, location_coordinates_longitude, location_state,location_country, data_shape , dates_documented_day, dates_documented_month, dates_documented_year, data_description_excerpt)
+ufo_mod2
+```
+
+### Examining the Data
+
+Performing **mosaic**
+
+```{r}
+mosaic::inspect(ufo_mod2)
+```
+
+Performing **skimr**
+
+```{r}
+skimr::skim(ufo_mod2)
+```
+
+**At a glance:**
+
+-   The data is from years 1920 to 2014
+
+-   Mean hour of sighting is 15hrs and median is 19hrs
+
+-   There's no missing qualitative data in the entire data set
+
+### Summarizing Full Table
+
+```{r}
+summary(ufo_mod2)
+```
+
+### Our Assumptions
+
+Based on our research, we observed that the states and cities with the highest number of UFO sightings are often situated near water bodies or along borders. This led us to two possible speculations:
+
+1.  Many of these sightings could actually be advanced military aircraft, which people may misinterpret as UFOs.
+
+2.  The combination of heat and light reflections in these regions may create mirage-like formations, leading to unusual visual experiences.
+
+## ![](images/clipboard-1529333932.png)Our Approach
+
+Let's look into UFO sightings for different **states, cities, months, years and shapes**
+
+### **State-wise sightings in descending order**
+
+```{r}
+ufo_mod2 %>%
+  dplyr::count(location_state) %>%
+  arrange(desc(n)) %>%
+  tt()
+```
+
+**Top States:**
+
+**California** : Massive population (40M+), clear desert skies, a ton of military bases, aerospace testing, and people primed by Hollywood sci‑fi to notice UFOs.
+
+**Florida**: Regular rocket launches (NASA, SpaceX) can look strange to the untrained eye. Florida’s flat terrain, huge population, outdoor lifestyle can lead to these sightings.
+
+**Washington**: Birthplace of the “flying saucer” craze (Kenneth Arnold, 1947). Mix of mountains, open skies, and military activity.
+
+**Texas**: Huge skies, massive military presence, and a strong UFO subculture (the Stephenville Lights of 2008 are a famous case)
+
+**New York**: NYC is too bright for stargazing, but upstate NY has dark skies. Huge population also amounts to a lot of reporting.
+
+```{r}
+ufo_mod2 %>% 
+  gf_bar(~ fct_infreq(location_state) , fill = "navy") %>% 
+  gf_theme(axis.text.x = element_text(angle = 90)) %>% 
+gf_labs(
+    x = "States",
+    y = "Number of Sightings",
+    title = "UFO Sightings for each state"
+  )
+
+```
+
+```{r}
+ufo_mod2 %>%
+  dplyr::count(location_city) %>%
+  arrange(desc(n)) %>%
+  tt()
+```
+
+**Top cities:**
+
+**Seattle**\
+The modern UFO craze arguably started here: pilot Kenneth Arnold reported seeing “flying saucers” near Mt. Rainier in 1947, sparking the term. Lots of open sky, military air traffic, and aerospace presence (Boeing) keep it a hotbed for sightings.
+
+**Phoenix**\
+The Phoenix Lights (1997) is one of the most famous mass UFO sightings in history: thousands of people saw unexplained lights. Clear skies and Air Force activity in the desert make it easy to see anomalies.
+
+**Las Vegas**\
+A hub for UFO activity and alien-themed tourism. The area is home to attractions like the Extraterrestrial Highway and offers tours that visit UFO hotspots and the infamous Area 51 perimeter.
+
+**Portland**\
+McMenamins UFO Festival, an annual event celebrating extraterrestrial interests is held in McMinnville, a town about an hour southwest of Portland.
+
+### **Inference:**
+
+-   Population: They’re the most populous states more people means more eyes.
+
+-   Aerospace & military bases: **California** (Edwards, China Lake), **Florida** (Cape Canaveral, Eglin AFB), **Texas** (Dyess, Lackland), **Ohio** (Wright‑Patt), **Arizona** (Luke AFB), etc. Many UFOs end up being secret/test aircraft.
+
+-   Clear skies & open land: Deserts, plains, and rural areas make lights and objects obvious.
+
+-   Cultural priming: Hollywood, sci‑fi, and social media amplify reports.
+
+-   Outdoor lifestyles: Warm states = people outside more at night, seeing the sky.
+
+    ![](images/clipboard-663589843.png)
+
+### **Month-wise sightings in descending order**
+
+```{r}
+
+ufo_mod2 %>%
+  dplyr::count(dates_sighted_month) %>%
+   arrange(desc(n)) %>% 
+  tt()
+```
+
+**Findings: July** records the highest number of UFO sightings, followed by **August**, **June**, and **October**.
+
+**Inference**\
+This seasonal spike may be linked to the summer months when longer daylight hours, clearer skies, and more outdoor activity increase the chances of people observing and reporting unusual aerial phenomena.
+
+### **Year-wise sightings**
+
+```{r}
+ufo_mod2 %>%
+  dplyr::count(dates_sighted_year) %>%
+  tt()
+```
+
+**Visualizing the data to understand the trend**
+
+```{r}
+ufo_mod2 %>%
+  count(dates_sighted_year) %>%
+  gf_line(n ~ dates_sighted_year, color = "purple") %>%
+  gf_labs(
+    x = "Year",
+    y = "Number of Sightings",
+    title = "UFO Sightings per Year"
+  ) %>% 
+  gf_refine(scale_x_continuous(breaks = seq(1900, 2020, by = 5))) %>% #Labelling every 5 years on x-axis
+   gf_theme(axis.text.x = element_text(angle = 45, hjust = 1)) 
+```
+
+### Observations
+
+-   Number of sightings start increasing from the 2000s
+
+-   From 2000 onwards, there are peaks at regular intervals
+
+-   There's a sudden dip in the last year (2014)
+
+### **Year-wise sightings in descending order**
+
+```{r}
+ufo_mod2 %>%
+  dplyr::count(dates_sighted_year) %>%
+   arrange(desc(n)) %>% 
+  tt()
+```
+
+### **Observations:**
+
+-   Most sightings are from the year 2000 onwards, mostly between **2011** to **2013**
+
+-   Decrease in no. of sightings for the year **2014**, might be due to incomplete documentation for the entire year
+
+-   The first 100 sightings begin from **1965**
+
+-   The first 1000 sightings begin from **1998**
+
+### **Some Historic events**
+
+-   **1947**: **The Arnold Sighting -** Widely regarded as the first well-documented UFO sighting in the United States.
+
+-   **1961**: **The Betty and Barney Hill Abduction Case -** One of the first widely publicized alien abduction stories in the U.S., fueling public imagination.
+
+-   **1977**: **Star Wars, A New Hope** - Popularized space culture and heightened public fascination with extraterrestrials.
+
+-   **1990**: **The Kodak Brownie** - Affordable and accessible cameras became common, making it easier to document unusual sightings.
+
+-   **1991**: **Launch of the World Wide Web -** Broader access to share and spread UFO stories globally.
+
+-   **1997**: **Phoenix Lights Incident:** One of the most famous mass UFO sightings in the U.S., heavily reported.
+
+-   **2007**: **iPhone launch -** Smartphones put cameras and internet access in everyone’s pocket.
+
+-   **2011**: **Apollo 18 Film -** Reinforced pop culture connections between space exploration and alien speculation.
+
+Most UFO sightings were reported after the **2000s**, highlighting a clear disparity compared to earlier decades. This raises several possibilities:
+
+-   Were people in earlier years less aware, or less inclined to report such phenomena?
+
+-   Did the availability of consumer technology (affordable cameras, smartphones, the internet) lead to more documentation?
+
+-   Could cultural influences, such as the popularity of Star Wars and other science fiction, have fueled public imagination and reporting?
+
+**Note**: Despite the dataset’s size, years with fewer reported sightings may not yield reliable insights, lower counts could reflect under-documentation rather than a true decline in sightings.
+
+### Let's check if the average month changes over the years
+
+```{r}
+ufo_avg_month <- ufo_mod2 %>%
+  filter(dates_sighted_month >= 1, dates_sighted_month <= 12) %>%
+  count(dates_sighted_year, dates_sighted_month) %>%
+  group_by(dates_sighted_year) %>%
+  summarise(avg_month = weighted.mean(dates_sighted_month, n, na.rm = TRUE)) %>%
+  ungroup()
+gf_line(avg_month ~ dates_sighted_year, data = ufo_avg_month, color = "green") %>%
+  gf_point(avg_month ~ dates_sighted_year, data = ufo_avg_month, color = "blue") %>%
+  gf_labs(
+    x = "Year",
+    y = "Average Month of Sightings",
+    title = "Shift in Sighting Months Over the Years"
+  )
+```
+
+### Observation
+
+-   There is a drastic change in the spikes before 2000, which may be caused due to inadequate data entries.
+
+-   From the year 2000 onwards, there isn't much of a difference in the average months of sightings.
+
+-   There is a sudden drop for the year 2014, which may be due to incomplete data for the entire year as mentioned above
+
+### Inference
+
+-   We infer that, more sightings have been during summers (mostly during July), which may be caused my summer holidays, more outings and hence more observations by the people.
+
+**Let's check how shapes are related with these sightings**
+
+### **UFO shapes count in descending order**
+
+```{r}
+ufo_mod2 %>%
+  dplyr::count(data_shape) %>%
+   arrange(desc(n)) %>% 
+  tt()
+```
+
+```{r}
+
+ufo_mod2 %>%
+  gf_bar(~ fct_infreq(data_shape), fill = "skyblue") %>%
+  gf_theme(axis.text.x = element_text(angle = 45, hjust = 1)) %>% 
+  gf_labs(
+    x = "UFO Shapes",
+    y = "Number of Sightings",
+    title = "Number of Sightings for SUFO Shapes "
+  )
+```
+
+### **Observations**
+
+-   **Light** has the exceedingly, the most number of sightings, which suggests that many sightings could be misinterpretations of natural or artificial light sources
+
+-   After light, common shapes are **triangle*,* circle*,* fireball*,* disk*,* sphere*,* oval**. This shows people often associate UFOs with simple, symmetrical forms or perhaps influenced by pop culture depictions of flying saucers and triangles.
+
+-   Categories like unknown and other also appear relatively high, which means that there's lack of description leading to poor confidence of it being a UFO
+
+## Hypothesis building
+
+### Is there a co-relation between the **UFO shape and the encounter duration**?
+
+```{r}
+
+ufo_mod2 %>%
+  filter(data_encounter_duration < 100000) %>% # Removing extreme outliers
+  gf_boxplot(data_encounter_duration ~ data_shape, 
+             fill = "violet", orientation = "x") %>%
+  gf_labs(
+    x = "UFO Shape",
+    y = "Encounter Duration",
+    title = "Encounter Durations by Shape"
+  ) %>%
+  gf_theme(axis.text.x = element_text(angle = 45, hjust = 1))
+
+```
+
+**Converting the time into Log** due to the extreme variation in the encountered duration.
+
+```{r}
+ufo_mod2 %>%
+  filter(data_encounter_duration < 100000) %>%   # Removing extreme outliers
+  mutate(data_shape = fct_infreq(data_shape)) %>% # Reordering shapes in desc. order of their sightings
+  gf_boxplot(data_encounter_duration ~ data_shape, 
+             fill = "violet", orientation = "x") %>%
+  gf_refine(scale_y_log10(labels = scales::label_number())) %>% #Making the timeline in log, then labelling it in numbers
+  gf_labs(
+    x = "UFO Shape",
+    y = "Encounter Duration (log sec)",
+    title = "Encounter Durations by Shape"
+  ) %>%
+  gf_theme(axis.text.x = element_text(angle = 45, hjust = 1))
+```
+
+### Observation
+
+-   Most UFO shapes (light, triangle, circle, fireball, sphere, disk, etc.) have their median encounter duration between 30 seconds and a few minutes.
+
+-   Almost every shape shows extreme outliers (encounters lasting hours or more).
+
+-   Flash is perceived instantly hence might have lowest median
+
+-   Change has the highest median which may be due to longer encounter duration needed to see its change
+
+-   Some shapes like circle, disk, oval, and triangle have a wider spread, suggesting they’re more often reported in longer encounters.
+
+### Inference
+
+The data suggests that common, simpler shapes (light, circle, triangle) are usually seen briefly, while rarer, structured shapes (cylinder, diamond, chevron) tend to be reported for longer durations. Outliers are frequent, hinting at either a few genuine long encounters — or reporting/recording inconsistencies.
+
+### Does location of sighting, have any relation with the duration encountered?
+
+Taking, top 10 states into consideration
+
+```{r}
+top_states <- ufo_mod2 %>%
+  count(location_state) %>%
+  slice_max(n, n = 10) %>% #Top 10 states wiht most sightings
+  pull(location_state)
+
+ufo_mod2 %>%
+  filter(location_state %in% top_states) %>% #Filtering top 10 states
+  filter(data_encounter_duration < 100000) %>% 
+  gf_boxplot(data_encounter_duration ~ location_state, fill = "turquoise", orientation = "x") %>%
+      gf_refine(scale_y_log10(labels = scales::label_number())) %>% #Making the timeline in lo, then labelling it in numbers
+  gf_labs(
+    x = "Top 10 States",
+    y = "Encounter Duration (log sec)",
+    title = "UFO Encounter Duration for Top 10 States"
+  )
+```
+
+### Observation:
+
+-   The median for the top 10 states seems to be similar
+
+-   There's lower deviation for all states indicating lower encounter duration
+
+-   Arizona has a median comparatively higher than the other states
+
+Let's check by plotting just the median for all states now
+
+```{r}
+ufo_mod2 %>%
+  group_by(location_state) %>%
+  summarise(median_duration = median(data_encounter_duration, na.rm = TRUE)) %>%
+  gf_col(median_duration ~ location_state, fill = "orange") %>%
+  gf_labs(
+    x = "States",
+    y = "Median Encounter Duration (sec)",
+    title = "Median UFO Encounter Duration by State"
+  ) %>% 
+    gf_theme(axis.text.x = element_text(angle = 90, hjust = 1))
+```
+
+```{r}
+ufo_mod2 %>%
+  dplyr::summarise(
+    median_encounter_duration = median(data_encounter_duration, na.rm=T)
+  )
+```
+
+### Observation
+
+-   Most states have the same median encounter duration of around **180 seconds**
+
+-   States like Alaska, Arizona, Delaware, Hawaii etc. have a higher median
+
+-   States like District of Columbia, Massachusetts,have a lower median
+
+### Inference
+
+-   The 180-second median across most states suggests approximately 3 minutes may represent a typical attention span or the duration before most unidentified objects move out of sight or become identifiable.
+
+-   Arizona's clear desert skies might allow for longer visible tracking of UFOs. For other states, possibly fewer light pollution issues enabling extended observations
+
+-   Lower median may be due to less reported sightings or more skeptical reporting or quicker dismissals of sightings
+
+### Is the UFO shape associated with the State location?
+
+Taking top 10 states into consideration
+
+```{r}
+top_states <- ufo_mod2 %>%
+  count(location_state) %>%
+  slice_max(n, n = 10) %>% #Top 10 states with most sightings
+  pull(location_state)
+
+ufo_mod2 %>%
+  filter(location_state %in% top_states) %>%   # Filter top 10 states
+  gf_bar(~location_state, 
+         fill = ~data_shape, 
+         position = "stack") %>%
+  gf_labs(
+    x = "Top 10 States",
+    y = "Count of Sightings",
+    title = "UFO Shapes Distribution in Top 10 States",
+    fill = "UFO Shape"
+  ) %>%
+  gf_theme(axis.text.x = element_text(angle = 0, hjust = 1))
+```
+
+Making a proportion bar graph to understand the most sighted shapes for each state
+
+```{r}
+ufo_mod2 %>%
+  filter(location_state %in% top_states) %>%  # Filtering top 10 states
+  mutate(data_shape = fct_infreq(data_shape), # Arranging shapes in desc order
+         data_shape = fct_rev(data_shape)) %>% 
+           
+  gf_props(~location_state, 
+         fill = ~data_shape,
+         position = "fill") %>%
+  gf_labs(
+    x = "Top 10 States",
+    y = "Proportion of Sightings",
+    title = "UFO Shapes Distribution in Top 10 States",
+    fill = "UFO Shape"
+  ) %>%
+  gf_theme(axis.text.x = element_text(angle = 0, hjust = 1))
+```
+
+### Observation
+
+-   Most shape occurance is seen same accross the top 10 states
+
+-   Light is significantly high in all the states, which means a proper object isnt sighted but rather a flash / unfamiliar object reported as a UFO
+
+**Lets take top 10 shapes for the top 10 states**
+
+```{r}
+ufo_mod2 %>%
+  filter(location_state %in% top_states) %>%
+  mutate(data_shape = fct_lump_n(data_shape, 10)) %>%  # Keeping the top 10 shapes, lump rest
+   mutate(data_shape = fct_infreq(data_shape), # Arranging shapes in desc order
+         data_shape = fct_rev(data_shape)) %>% 
+  gf_props(~ location_state, 
+           fill = ~ data_shape, 
+           position = "fill") %>%
+  gf_labs(
+    x = "Top 10 States",
+    y = "Proportion of Sightings",
+    fill = "UFO Shape",
+    title = "Top 10 UFO Shapes Across Top 10 States"
+  ) %>%
+  gf_theme(axis.text.x = element_text(angle = 0, hjust = 1))
+```
+
+### Inference
+
+-   Consistency across states suggests a universal human tendency to report ambiguous lights as UFOs
+
+-   The "light" category acts as a catch-all for unidentified light sources where witnesses cannot discern a specific shape
+
+-   This pattern reveals more about human psychology and perception than about the phenomena themselves
+
+### Let's check the change in UFO shapes over the years
+
+```{r}
+ufo_mod2 %>%
+  filter(data_encounter_duration < 100000) %>% 
+  count(dates_sighted_year, data_shape) %>%
+  mutate(data_shape = fct_lump_n(data_shape, 8)) %>%  # Keep top 8 shapes
+  gf_line(n ~ dates_sighted_year, color = ~data_shape) %>%
+  gf_labs(
+    x = "Year",
+    y = "Number of Sightings",
+    color = "UFO Shape",
+    title = "Change in UFO Shapes Over the Years"
+  )
+```
+
+### Inference
+
+-   What's interesting is that throughout the years, the prevalence of "light" reports may reflect cultural expectations of what UFOs "should" look like
+
+-   People might default to "light" when they see something unusual but can't identify specific features
+
+-   This pattern could indicate confirmation bias - people interpreting ambiguous lights as UFOs based on popular culture
+
+### Let's see how daylight and nighttime affects the number of sightings
+
+```{r}
+ufo_mod2 %>%
+  mutate(
+    day_night = ifelse(dates_sighted_hour >= 6 & dates_sighted_hour < 18, "Day", "Night"),
+    sighting_month = month.name[dates_sighted_month]
+  ) %>%
+  count(sighting_month, day_night) %>%
+  mutate(sighting_month = factor(sighting_month, levels = month.name)) %>%
+  gf_col(
+    n ~ sighting_month, 
+    fill = ~ day_night,
+    position = "dodge"
+  ) %>%
+  gf_labs(
+    x = "Month",
+    y = "Number of Sightings",
+    fill = "Time of Day",
+    title = "Daytime vs Nighttime UFO Sightings by Month"
+  ) %>%
+  gf_theme(theme(axis.text.x = element_text(angle = 45, hjust = 1)))
+```
+
+### Observation
+
+-   There's an obvious difference in the day and night time sightings, where more sightings are reported during night
+
+-   July not only has the most sightings, but also has the largest differnce in the night and day time sightings
+
+### Inference
+
+-   Better visibility of illuminated objects against dark skies
+
+-   Increased misidentification of celestial bodies and aircraft lights
+
+-   Weather conditions (clear summer nights in July) facilitating observations
+
+### Also let's check the hour-wise sighting
+
+```{r}
+ufo_mod2 %>% 
+  gf_histogram(~dates_sighted_hour, bins=24, fill = "purple") %>% 
+   gf_labs(
+    x = "Hour of the Sighting",
+    y = "Number of Sightings",
+    title = "UFO Sightings by Hours of the Day"
+  ) %>% 
+  gf_refine(scale_x_continuous(breaks = 0:23))
+```
+
+### Observation
+
+-   The sightings increase from 16:00 onwards and lowers after 22:00
+
+-   A noticeable reduction in sightings occurs around midnight, contrary to expectations of increased nighttime observations
+
+### Inference
+
+The midnight dip may be attributed to reduced aerial activity and human factors rather than military operations alone:
+
+-   Decreased civilian aviation and commercial flights during late night hours
+
+-   Reduced human outdoor activity limiting potential witnesses
+
+-   Normal sleep patterns reducing the observer population
+
+### Lastly, let's see the occurrence of different shapes during day and night time
+
+```{r}
+ufo_mod2 %>%
+  mutate(
+    day_night = ifelse(dates_sighted_hour >= 6 & dates_sighted_hour < 18, "Day", "Night"),
+    data_shape = fct_lump_n(data_shape, 10)  # keeping top 10 shapes
+  ) %>%
+  count(day_night, data_shape) %>%
+  gf_col(
+    n ~ data_shape, 
+    fill = ~ day_night,
+    position = "stack"
+  ) %>%
+  gf_labs(
+    x = "UFO Shape",
+    y = "Number of Sightings",
+    fill = "Time of Day",
+    title = "Daytime vs Nighttime UFO Sightings by Shape (Top 10)"
+  ) %>%
+  gf_theme(theme(axis.text.x = element_text(angle = 45, hjust = 1)))
+```
+
+### Observation
+
+-   The majority of UFO shapes are reported significantly more frequently during nighttime hours
+
+-   Light is seen during the night the most due to its increased visibility
+
+-   Others has the smallest day-night differential
+
+### Inference
+
+-   The consistent nighttime pattern suggests either enhanced visibility of aerial phenomena after dark or increased public vigilance during nighttime hours
+
+-   The "light" category's strong nighttime association indicates witnesses often report unidentified light sources rather than structured objects
+
+## Conclusion
+
+**The analysis reveals that UFO sightings are predominantly human-driven phenomena influenced by technological, psychological, and environmental factors rather than evidence of extraterrestrial activity. The data consistently shows that:**
+
+-   Reporting patterns correlate strongly with human behavior - sightings peak during summer months, evening hours, and in populated areas with outdoor lifestyles
+
+-   Technological accessibility drives documentation - the dramatic increase in reports post-2000 aligns with the proliferation of cameras, smartphones, and internet access
+
+-   Perception outweighs substance - the overwhelming prevalence of "light" sightings across all regions suggests most reports involve misidentified conventional phenomena rather than structured objects
+
+-   Cultural and psychological factors heavily influence reporting, with consistency in shapes and patterns revealing more about human perception than about the phenomena themselves
+
+**The evidence suggests that while some sightings remain unexplained, the majority likely represent natural phenomena, human-made objects, or psychological misconceptions amplified by cultural context and technological accessibility.**

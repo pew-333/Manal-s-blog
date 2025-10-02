@@ -1,0 +1,19 @@
+# Quarto
+/.quarto/
+/_site/
+*.knit.html
+*.utf8.md
+
+# R
+.Rproj.user
+.Rhistory
+.RData
+.Ruserdata
+
+# OS
+.DS_Store
+Thumbs.db
+
+# IDE
+.vscode/
+.idea/

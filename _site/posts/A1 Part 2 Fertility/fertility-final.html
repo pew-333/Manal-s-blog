@@ -1,0 +1,1116 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.7.32">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="Ashmita Biswas, Ihina Purohit, Manal Nazer, Shashwat Gupta">
+
+<title>A1 Part 2 – Manal’s blog</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<script src="../../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-37eea08aefeeee20ff55810ff984fec1.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap-c1fac2584b48ed01fb6e278e36375074.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+<link href="../../site_libs/tabwid-1.1.3/tabwid.css" rel="stylesheet">
+<script src="../../site_libs/tabwid-1.1.3/tabwid.js"></script>
+
+
+<link rel="stylesheet" href="../../styles.css">
+</head>
+
+<body class="nav-fixed fullcontent quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top quarto-banner">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a class="navbar-brand" href="../../index.html">
+    <span class="navbar-title">Manal’s blog</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../../about.html"> 
+<span class="menu-text">About</span></a>
+  </li>  
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://github.com/"> <i class="bi bi-github" role="img">
+</i> 
+<span class="menu-text"></span></a>
+  </li>  
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://twitter.com"> <i class="bi bi-twitter" role="img">
+</i> 
+<span class="menu-text"></span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<header id="title-block-header" class="quarto-title-block default page-columns page-full">
+  <div class="quarto-title-banner page-columns page-full">
+    <div class="quarto-title column-body">
+      <h1 class="title">A1 Part 2</h1>
+                      </div>
+  </div>
+    
+  
+  <div class="quarto-title-meta">
+
+      <div>
+      <div class="quarto-title-meta-heading">Author</div>
+      <div class="quarto-title-meta-contents">
+               <p>Ashmita Biswas, Ihina Purohit, Manal Nazer, Shashwat Gupta </p>
+            </div>
+    </div>
+      
+    
+      
+    </div>
+    
+  
+  </header><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    
+<!-- main -->
+<main class="content quarto-banner-title-block" id="quarto-document-content">
+
+
+
+
+
+<section id="a1-part-2-fertility" class="level1">
+<h1>A1 Part 2: Fertility</h1>
+<p>A data frame containing 254,654 (and 30,000, respectively) observations on 8 variables.</p>
+<p>In our exploratory data analysis (EDA), we have examined the data set through several steps: inspecting the data, making assumptions about the variables, validating those assumptions, summarizing the information, applying filters, visualizing the patterns, and finally, drawing meaningful insights.</p>
+<section id="data-dictionary" class="level2">
+<h2 class="anchored" data-anchor-id="data-dictionary">Data Dictionary</h2>
+<dl>
+<dt>Qualitative Variables</dt>
+<dd>
+<p><strong>children_gender:</strong> Factor indicating genders of the children. Genders of the children are clubbed based on the order of birth. They could range from either male-male, male-female, female-male or female-female.</p>
+<p><strong>havemorekids:</strong> Factor indicating whether the mother has more than 2 children.</p>
+<p><strong>ethnicity:</strong> Factor indicating the ethnicity of the mother. The ethnicity can be either Caucasian, Hispanic, AFAM (African American), other (ethinicities other than the ones mentioned), AFAM+Hispanic, AFAM+Other or Hispanic+Other.</p>
+</dd>
+<dt>Quantitative Variables</dt>
+<dd>
+<p><strong>mother_age:</strong> age of the mother in years.</p>
+<p><strong>work_weeks:</strong> number of weeks the mother worked in the year 1979.</p>
+</dd>
+</dl>
+</section>
+<section id="our-questions-before-performing-eda" class="level2">
+<h2 class="anchored" data-anchor-id="our-questions-before-performing-eda">Our questions before performing EDA:&nbsp;</h2>
+<ul>
+<li><p><em>Does having more kids correlate with working fewer weeks?</em></p></li>
+<li><p><em>Does the gender of the 2 existing children play a role in having a third child?</em></p></li>
+<li><p><em>Do ethnicities differ in average weeks worked?</em></p></li>
+<li><p><em>At what ages is work participation highest/lowest?</em></p></li>
+<li><p><em>Are non-working mothers clustered by age, ethnicity, or whether or not they have more than 2 children?</em></p></li>
+<li><p><em>Do “mixed ethnicity” mothers show a different pattern?</em></p></li>
+</ul>
+<hr>
+<section id="setting-up-libraries" class="level4">
+<h4 class="anchored" data-anchor-id="setting-up-libraries">Setting up libraries</h4>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>── Attaching core tidyverse packages ──────────────────────── tidyverse 2.0.0 ──
+✔ dplyr     1.1.4     ✔ readr     2.1.5
+✔ forcats   1.0.0     ✔ stringr   1.5.2
+✔ ggplot2   4.0.0     ✔ tibble    3.3.0
+✔ lubridate 1.9.4     ✔ tidyr     1.3.1
+✔ purrr     1.1.0     
+── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
+✖ dplyr::filter() masks stats::filter()
+✖ dplyr::lag()    masks stats::lag()
+ℹ Use the conflicted package (&lt;http://conflicted.r-lib.org/&gt;) to force all conflicts to become errors</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(mosaic)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Registered S3 method overwritten by 'mosaic':
+  method                           from   
+  fortify.SpatialPolygonsDataFrame ggplot2
+
+The 'mosaic' package masks several functions from core packages in order to add 
+additional features.  The original behavior of these functions should not be affected by this.
+
+Attaching package: 'mosaic'
+
+The following object is masked from 'package:Matrix':
+
+    mean
+
+The following objects are masked from 'package:dplyr':
+
+    count, do, tally
+
+The following object is masked from 'package:purrr':
+
+    cross
+
+The following object is masked from 'package:ggplot2':
+
+    stat
+
+The following objects are masked from 'package:stats':
+
+    binom.test, cor, cor.test, cov, fivenum, IQR, median, prop.test,
+    quantile, sd, t.test, var
+
+The following objects are masked from 'package:base':
+
+    max, mean, min, prod, range, sample, sum</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(skimr)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>
+Attaching package: 'skimr'
+
+The following object is masked from 'package:mosaic':
+
+    n_missing</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tinytable)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>
+Attaching package: 'tinytable'
+
+The following object is masked from 'package:ggplot2':
+
+    theme_void</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(visdat)</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(naniar)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>
+Attaching package: 'naniar'
+
+The following object is masked from 'package:skimr':
+
+    n_complete</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(janitor)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>
+Attaching package: 'janitor'
+
+The following objects are masked from 'package:stats':
+
+    chisq.test, fisher.test</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(DT)</span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggformula)</span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(crosstable)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>
+Attaching package: 'crosstable'
+
+The following object is masked from 'package:purrr':
+
+    compact</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="fu">theme_set</span>(<span class="fu">theme_minimal</span>(<span class="at">base_family =</span> <span class="st">"sans"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="reading-the-data.." class="level4">
+<h4 class="anchored" data-anchor-id="reading-the-data..">Reading the data..</h4>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>Fertility <span class="ot">&lt;-</span> readr<span class="sc">::</span><span class="fu">read_delim</span>(<span class="st">"https://vincentarelbundock.github.io/Rdatasets/csv/AER/Fertility.csv"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Rows: 254654 Columns: 9
+── Column specification ────────────────────────────────────────────────────────
+Delimiter: ","
+chr (6): morekids, gender1, gender2, afam, hispanic, other
+dbl (3): rownames, age, work
+
+ℹ Use `spec()` to retrieve the full column specification for this data.
+ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.</code></pre>
+</div>
+</div>
+</section>
+<section id="lets-take-a-glimpse" class="level4">
+<h4 class="anchored" data-anchor-id="lets-take-a-glimpse">Let’s take a glimpse()</h4>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>dplyr<span class="sc">::</span><span class="fu">glimpse</span>(Fertility)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Rows: 254,654
+Columns: 9
+$ rownames &lt;dbl&gt; 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18…
+$ morekids &lt;chr&gt; "no", "no", "no", "no", "no", "no", "no", "no", "no", "no", "…
+$ gender1  &lt;chr&gt; "male", "female", "male", "male", "female", "male", "female",…
+$ gender2  &lt;chr&gt; "female", "male", "female", "female", "female", "female", "ma…
+$ age      &lt;dbl&gt; 27, 30, 27, 35, 30, 26, 29, 33, 29, 27, 28, 28, 35, 34, 32, 2…
+$ afam     &lt;chr&gt; "no", "no", "no", "yes", "no", "no", "no", "no", "no", "no", …
+$ hispanic &lt;chr&gt; "no", "no", "no", "no", "no", "no", "no", "no", "no", "no", "…
+$ other    &lt;chr&gt; "no", "no", "no", "no", "no", "no", "no", "no", "no", "no", "…
+$ work     &lt;dbl&gt; 0, 30, 0, 0, 22, 40, 0, 52, 0, 0, 0, 52, 52, 52, 8, 7, 0, 40,…</code></pre>
+</div>
+</div>
+</section>
+<section id="observations" class="level3">
+<h3 class="anchored" data-anchor-id="observations">Observations:</h3>
+<ul>
+<li>Multiple entries of the work column contain “0” values.</li>
+<li><strong>Keep in mind:</strong> The traditional American business hours are 9:00 a.m. to 5:00 p.m., Monday to Friday, representing a workweek of five eight-hour days comprising 40 hours in total. These are the origin of the phrase 9-to-5, used to describe a conventional and possibly tedious job.</li>
+</ul>
+<section id="exploring-the-work-week-data" class="level4">
+<h4 class="anchored" data-anchor-id="exploring-the-work-week-data">Exploring the work week data:</h4>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>Fertility <span class="sc">%&gt;%</span> </span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">count</span>(work<span class="sc">&gt;</span><span class="dv">0</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 2 × 2
+  `work &gt; 0`      n
+  &lt;lgl&gt;       &lt;int&gt;
+1 FALSE      120141
+2 TRUE       134513</code></pre>
+</div>
+</div>
+<p>We found that nearly half of the parents in the data set did not work at all (0 weeks) during the year, and among those who did work, many were employed for fewer weeks, suggesting part-time work.</p>
+<p>One hypothesis could be that this data set has information of mothers who are traditional wives or those who are unemployed/ extender break from the labor force. We also are led to this hypothesis because this data set only contains information for one parent and fertility data traditionally feature mothers more often than fathers.</p>
+</section>
+<section id="munging-the-data.." class="level4">
+<h4 class="anchored" data-anchor-id="munging-the-data..">Munging the data..</h4>
+<p>We mutated the columns to make the data set more comprehensible. To improve readability, we consolidated the different ethnicities into a single column, ensuring that mixed ethnicities were also grouped together to give them a clearer representation.</p>
+<p>Additionally, we renamed certain factors to make the data easier to interpret.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>Fertility_2 <span class="ot">&lt;-</span> Fertility <span class="sc">%&gt;%</span></span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">ethnicity =</span> <span class="fu">case_when</span>(</span>
+<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a>    afam <span class="sc">==</span> <span class="st">"yes"</span> <span class="sc">&amp;</span> hispanic <span class="sc">==</span> <span class="st">"no"</span> <span class="sc">&amp;</span> other <span class="sc">==</span> <span class="st">"no"</span> <span class="sc">~</span> <span class="st">"AFAM"</span>,</span>
+<span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a>    afam <span class="sc">==</span> <span class="st">"no"</span> <span class="sc">&amp;</span> hispanic <span class="sc">==</span> <span class="st">"yes"</span> <span class="sc">&amp;</span> other <span class="sc">==</span> <span class="st">"no"</span> <span class="sc">~</span> <span class="st">"Hispanic"</span>,</span>
+<span id="cb22-5"><a href="#cb22-5" aria-hidden="true" tabindex="-1"></a>    afam <span class="sc">==</span> <span class="st">"no"</span> <span class="sc">&amp;</span> hispanic <span class="sc">==</span> <span class="st">"no"</span> <span class="sc">&amp;</span> other <span class="sc">==</span> <span class="st">"yes"</span> <span class="sc">~</span> <span class="st">"Other"</span>,</span>
+<span id="cb22-6"><a href="#cb22-6" aria-hidden="true" tabindex="-1"></a>    afam <span class="sc">==</span> <span class="st">"no"</span> <span class="sc">&amp;</span> hispanic <span class="sc">==</span> <span class="st">"no"</span> <span class="sc">&amp;</span> other <span class="sc">==</span> <span class="st">"no"</span> <span class="sc">~</span> <span class="st">"Caucasian"</span>,</span>
+<span id="cb22-7"><a href="#cb22-7" aria-hidden="true" tabindex="-1"></a>     afam <span class="sc">==</span> <span class="st">"yes"</span> <span class="sc">&amp;</span> hispanic <span class="sc">==</span> <span class="st">"yes"</span> <span class="sc">&amp;</span> other <span class="sc">==</span> <span class="st">"no"</span> <span class="sc">~</span> <span class="st">"AFAM+Hispanic"</span>,</span>
+<span id="cb22-8"><a href="#cb22-8" aria-hidden="true" tabindex="-1"></a>     afam <span class="sc">==</span> <span class="st">"yes"</span> <span class="sc">&amp;</span> hispanic <span class="sc">==</span> <span class="st">"no"</span> <span class="sc">&amp;</span> other <span class="sc">==</span> <span class="st">"yes"</span> <span class="sc">~</span> <span class="st">"AFAM+Other"</span>,</span>
+<span id="cb22-9"><a href="#cb22-9" aria-hidden="true" tabindex="-1"></a>     afam <span class="sc">==</span> <span class="st">"no"</span> <span class="sc">&amp;</span> hispanic <span class="sc">==</span> <span class="st">"yes"</span> <span class="sc">&amp;</span> other <span class="sc">==</span> <span class="st">"yes"</span> <span class="sc">~</span> <span class="st">"Hispanic+Other"</span></span>
+<span id="cb22-10"><a href="#cb22-10" aria-hidden="true" tabindex="-1"></a>  )) <span class="sc">%&gt;%</span> </span>
+<span id="cb22-11"><a href="#cb22-11" aria-hidden="true" tabindex="-1"></a><span class="fu">mutate</span>(<span class="at">children_gender =</span> <span class="fu">case_when</span>(</span>
+<span id="cb22-12"><a href="#cb22-12" aria-hidden="true" tabindex="-1"></a>  gender1<span class="sc">==</span> <span class="st">"male"</span> <span class="sc">&amp;</span> gender2<span class="sc">==</span> <span class="st">"male"</span> <span class="sc">~</span> <span class="st">"male-male"</span>,</span>
+<span id="cb22-13"><a href="#cb22-13" aria-hidden="true" tabindex="-1"></a>  gender1<span class="sc">==</span> <span class="st">"male"</span> <span class="sc">&amp;</span> gender2<span class="sc">==</span> <span class="st">"female"</span><span class="sc">~</span> <span class="st">"male-female"</span>,</span>
+<span id="cb22-14"><a href="#cb22-14" aria-hidden="true" tabindex="-1"></a>  gender1<span class="sc">==</span> <span class="st">"female"</span> <span class="sc">&amp;</span> gender2<span class="sc">==</span> <span class="st">"male"</span> <span class="sc">~</span> <span class="st">"female-male"</span>,</span>
+<span id="cb22-15"><a href="#cb22-15" aria-hidden="true" tabindex="-1"></a>  gender1<span class="sc">==</span> <span class="st">"female"</span> <span class="sc">&amp;</span> gender2<span class="sc">==</span> <span class="st">"female"</span> <span class="sc">~</span> <span class="st">"female-female"</span></span>
+<span id="cb22-16"><a href="#cb22-16" aria-hidden="true" tabindex="-1"></a>)) <span class="sc">%&gt;%</span> </span>
+<span id="cb22-17"><a href="#cb22-17" aria-hidden="true" tabindex="-1"></a> </span>
+<span id="cb22-18"><a href="#cb22-18" aria-hidden="true" tabindex="-1"></a> <span class="fu">select</span>(<span class="sc">-</span><span class="fu">c</span>(gender1, gender2, afam, hispanic, other)) <span class="sc">%&gt;%</span> </span>
+<span id="cb22-19"><a href="#cb22-19" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>( <span class="at">morekids =</span> <span class="fu">as.factor</span>(morekids),</span>
+<span id="cb22-20"><a href="#cb22-20" aria-hidden="true" tabindex="-1"></a>          <span class="at">ethnicity =</span> <span class="fu">as.factor</span>(ethnicity),</span>
+<span id="cb22-21"><a href="#cb22-21" aria-hidden="true" tabindex="-1"></a>          <span class="at">children_gender =</span> <span class="fu">as.factor</span>(children_gender)) <span class="sc">%&gt;%</span> </span>
+<span id="cb22-22"><a href="#cb22-22" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">relocate</span>(ethnicity, children_gender, work, morekids, <span class="at">.after=</span>age) <span class="sc">%&gt;%</span> </span>
+<span id="cb22-23"><a href="#cb22-23" aria-hidden="true" tabindex="-1"></a><span class="fu">rename</span>(<span class="st">"mother_age"</span> <span class="ot">=</span> age,</span>
+<span id="cb22-24"><a href="#cb22-24" aria-hidden="true" tabindex="-1"></a>       <span class="st">"work_weeks"</span> <span class="ot">=</span> work,</span>
+<span id="cb22-25"><a href="#cb22-25" aria-hidden="true" tabindex="-1"></a>       <span class="st">"havemorekids"</span><span class="ot">=</span> morekids)</span>
+<span id="cb22-26"><a href="#cb22-26" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-27"><a href="#cb22-27" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-28"><a href="#cb22-28" aria-hidden="true" tabindex="-1"></a>Fertility_2</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 254,654 × 6
+   rownames mother_age ethnicity children_gender work_weeks havemorekids
+      &lt;dbl&gt;      &lt;dbl&gt; &lt;fct&gt;     &lt;fct&gt;                &lt;dbl&gt; &lt;fct&gt;       
+ 1        1         27 Caucasian male-female              0 no          
+ 2        2         30 Caucasian female-male             30 no          
+ 3        3         27 Caucasian male-female              0 no          
+ 4        4         35 AFAM      male-female              0 no          
+ 5        5         30 Caucasian female-female           22 no          
+ 6        6         26 Caucasian male-female             40 no          
+ 7        7         29 Caucasian female-male              0 no          
+ 8        8         33 Caucasian male-male               52 no          
+ 9        9         29 Caucasian female-male              0 no          
+10       10         27 Caucasian male-female              0 no          
+# ℹ 254,644 more rows</code></pre>
+</div>
+</div>
+</section>
+</section>
+<section id="what-does-all-this-data-mean" class="level3">
+<h3 class="anchored" data-anchor-id="what-does-all-this-data-mean">What does all this data mean??</h3>
+<p>Counting the ethnicities in this data set as well as the count of 2 or more children across ethnicities:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>Fertility_2 <span class="sc">%&gt;%</span> </span>
+<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">count</span>(ethnicity) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 6 × 2
+  ethnicity           n
+  &lt;fct&gt;           &lt;int&gt;
+1 AFAM            12960
+2 AFAM+Hispanic     196
+3 Caucasian      216033
+4 Hispanic        11117
+5 Hispanic+Other   7584
+6 Other            6764</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a>Fertility_2 <span class="sc">%&gt;%</span> </span>
+<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a>   dplyr<span class="sc">::</span><span class="fu">count</span>(ethnicity, havemorekids) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 12 × 3
+   ethnicity      havemorekids      n
+   &lt;fct&gt;          &lt;fct&gt;         &lt;int&gt;
+ 1 AFAM           no             7027
+ 2 AFAM           yes            5933
+ 3 AFAM+Hispanic  no              104
+ 4 AFAM+Hispanic  yes              92
+ 5 Caucasian      no           137344
+ 6 Caucasian      yes           78689
+ 7 Hispanic       no             5562
+ 8 Hispanic       yes            5555
+ 9 Hispanic+Other no             3522
+10 Hispanic+Other yes            4062
+11 Other          no             4183
+12 Other          yes            2581</code></pre>
+</div>
+</div>
+<p>The data set leans towards representing more Caucasian women compared to other ethnic group.</p>
+<p>The findings of this exploratory data analysis are to be taken with this in mind.</p>
+<p>Across ethnicities, most of the women don’t have more than 2 kids.</p>
+<p>One hypothesis could be that few of these could also comprise of single parents households or co-parent households; maybe more nuclear families than joint families. Access to healthcare/ income/societal/personal factors could also play a role on them having 2 children and not more.</p>
+<section id="visualizing-the-data.." class="level4">
+<h4 class="anchored" data-anchor-id="visualizing-the-data..">Visualizing the data..</h4>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a>Fertility_2 <span class="sc">%&gt;%</span></span>
+<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gf_props</span>(<span class="sc">~</span>ethnicity,</span>
+<span id="cb28-3"><a href="#cb28-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">fill =</span> <span class="sc">~</span>havemorekids,</span>
+<span id="cb28-4"><a href="#cb28-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">position =</span> <span class="st">"fill"</span></span>
+<span id="cb28-5"><a href="#cb28-5" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">%&gt;%</span></span>
+<span id="cb28-6"><a href="#cb28-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gf_labs</span>(</span>
+<span id="cb28-7"><a href="#cb28-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">"Distribution of Mothers Having 2 or More Children"</span>,</span>
+<span id="cb28-8"><a href="#cb28-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">subtitle =</span> <span class="st">"Data across different ethnicities, by proportion"</span></span>
+<span id="cb28-9"><a href="#cb28-9" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">%&gt;%</span></span>
+<span id="cb28-10"><a href="#cb28-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gf_refine</span>(<span class="fu">scale_fill_brewer</span>(<span class="at">palette =</span> <span class="st">"Set1"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="fertility-final_files/figure-html/unnamed-chunk-7-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>“Caucasian” and “Other” ethnicities seem to comprise of the most number of mothers with only 2 children, compared to “Hispanic + Other”, which has most number of mothers with more than 2 children.</p>
+<p><em>How does sex education/ access to healthcare play a role here, across ethnicities?</em></p>
+<p><em>Does the gender of the 2 existing children play a role in having a third child?</em></p>
+</section>
+<section id="lets-find-out" class="level4">
+<h4 class="anchored" data-anchor-id="lets-find-out">Let’s find out:</h4>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a>Fertility_2 <span class="sc">%&gt;%</span> </span>
+<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gf_props</span>(<span class="sc">~</span>ethnicity,</span>
+<span id="cb29-3"><a href="#cb29-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">fill =</span> <span class="sc">~</span>children_gender,</span>
+<span id="cb29-4"><a href="#cb29-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">position =</span> <span class="st">"fill"</span></span>
+<span id="cb29-5"><a href="#cb29-5" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">%&gt;%</span></span>
+<span id="cb29-6"><a href="#cb29-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gf_facet_grid</span>(<span class="sc">~</span>havemorekids) <span class="sc">%&gt;%</span> </span>
+<span id="cb29-7"><a href="#cb29-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gf_labs</span>(</span>
+<span id="cb29-8"><a href="#cb29-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">"Distribution of Gender Combinations of Children Across Ethnicities"</span>,</span>
+<span id="cb29-9"><a href="#cb29-9" aria-hidden="true" tabindex="-1"></a>    <span class="at">subtitle =</span> <span class="st">"Data showing presence of 2 or more children, by proportion"</span></span>
+<span id="cb29-10"><a href="#cb29-10" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">%&gt;%</span></span>
+<span id="cb29-11"><a href="#cb29-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gf_refine</span>(<span class="fu">scale_fill_brewer</span>(<span class="at">palette =</span> <span class="st">"Set1"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="fertility-final_files/figure-html/unnamed-chunk-8-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Let’s plot a better graph, one with position=dodge to understand the child preferences better.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a>Fertility_2 <span class="sc">%&gt;%</span></span>
+<span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gf_bar</span>(<span class="sc">~</span>ethnicity,</span>
+<span id="cb30-3"><a href="#cb30-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">fill =</span> <span class="sc">~</span>children_gender,</span>
+<span id="cb30-4"><a href="#cb30-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">position =</span> <span class="st">"dodge"</span></span>
+<span id="cb30-5"><a href="#cb30-5" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">%&gt;%</span></span>
+<span id="cb30-6"><a href="#cb30-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gf_facet_grid</span>(<span class="sc">~</span>havemorekids) <span class="sc">%&gt;%</span> </span>
+<span id="cb30-7"><a href="#cb30-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gf_labs</span>(<span class="at">title =</span> <span class="st">"Distribution of Gender Combinations of Children Across Ethnicities"</span>,</span>
+<span id="cb30-8"><a href="#cb30-8" aria-hidden="true" tabindex="-1"></a>          <span class="at">subtitle=</span><span class="st">"Data showing presence of 2 or more children"</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb30-9"><a href="#cb30-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gf_refine</span>(<span class="fu">scale_fill_brewer</span>(<span class="at">palette =</span> <span class="st">"Set1"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="fertility-final_files/figure-html/unnamed-chunk-9-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Now let’s make a graph, faceting it by ethnicities, apart from caucasians, to understand the other ethnicities better:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a>Fertility_2 <span class="sc">%&gt;%</span></span>
+<span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(ethnicity<span class="sc">!=</span><span class="st">"Caucasian"</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb31-3"><a href="#cb31-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gf_bar</span>(<span class="sc">~</span>havemorekids,</span>
+<span id="cb31-4"><a href="#cb31-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">fill =</span> <span class="sc">~</span>children_gender,</span>
+<span id="cb31-5"><a href="#cb31-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">position =</span> <span class="st">"dodge"</span></span>
+<span id="cb31-6"><a href="#cb31-6" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">%&gt;%</span></span>
+<span id="cb31-7"><a href="#cb31-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gf_facet_grid</span>(<span class="sc">~</span>ethnicity) <span class="sc">%&gt;%</span> </span>
+<span id="cb31-8"><a href="#cb31-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gf_labs</span>(<span class="at">title =</span> <span class="st">"Distribution of Gender Combinations of Children Across Ethnicities"</span>,</span>
+<span id="cb31-9"><a href="#cb31-9" aria-hidden="true" tabindex="-1"></a>          <span class="at">subtitle=</span><span class="st">"Data showing presence of 2 or more children"</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb31-10"><a href="#cb31-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gf_refine</span>(<span class="fu">scale_fill_brewer</span>(<span class="at">palette =</span> <span class="st">"Set1"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="fertility-final_files/figure-html/unnamed-chunk-10-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Awesome!</p>
+<p>The data suggests that the decision to have a third child is not simply based on whether the parents already have a daughter/son, but rather on whether their existing children are of the same gender(male-male/female-female). Parents with two children of the same gender are more likely to go on to have a third child, possibly driven by the hope of “balancing” genders within the family. And also families who already have both a male and a female child (a “balanced” gender ratio) are less likely to have more children.</p>
+<p>This pattern negates our assumption of there being a subtle form of gender bias/sexism, where the female-female combination is more strongly associated with trying for another child, reflecting a cultural preference for sons.</p>
+<p>Our assumption however, is still seen in the “Other” ethnicity, suggesting that our hypothesis is not merely an assumption.</p>
+</section>
+<section id="lets-see-the-effect-of-the-amount-of-weeks-worked-on-the-presence-of-there-being-2-or-more-children" class="level4">
+<h4 class="anchored" data-anchor-id="lets-see-the-effect-of-the-amount-of-weeks-worked-on-the-presence-of-there-being-2-or-more-children">Lets see the effect of the amount of weeks worked on the presence of there being 2 or more children:</h4>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb32"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a>Fertility_2 <span class="sc">%&gt;%</span></span>
+<span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gf_histogram</span>(<span class="sc">~</span>work_weeks <span class="sc">|</span> havemorekids ) <span class="sc">%&gt;%</span> </span>
+<span id="cb32-3"><a href="#cb32-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gf_labs</span>(<span class="at">title=</span> <span class="st">"Distribution of Work Weeks Among Mothers"</span>,</span>
+<span id="cb32-4"><a href="#cb32-4" aria-hidden="true" tabindex="-1"></a>          <span class="at">subtitle=</span> <span class="st">"Who has more children?"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>`stat_bin()` using `bins = 30`. Pick better value `binwidth`.</code></pre>
+</div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="fertility-final_files/figure-html/unnamed-chunk-11-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Mothers who are not employed (0 weeks of work in a year) make up the majority in both the histograms.</p>
+<p>Both histograms also show a spike among mothers who work full-time. This could suggest that these mothers need to support their families financially, possibly as single parents - or that they are ambitious and committed to maintaining their careers while raising children.</p>
+<p>One possible interpretation is that mothers with more children may need to work more in order to provide for them. However, the data also shows that many working mothers tend to stop having children at two children, as do mothers who are not working at all.</p>
+<p>This leads us to questioning:</p>
+<p><em>Why do some mothers choose not to have more than two children regardless of their work status?</em></p>
+<p><em>Do mothers stop working after having more than two children because childcare demands leave them with little time for employment, or are they unable to continue working due to the increased motherly responsibilities?</em></p>
+<p><em>Do factors like age, ethnicity also play a role in such decisions?</em></p>
+</section>
+<section id="lets-find-out-1" class="level4">
+<h4 class="anchored" data-anchor-id="lets-find-out-1">Let’s find out:</h4>
+<p>The summary below shows us the distribution of ages of mothers with 2 or more children.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb34"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a>Fertility_2 <span class="sc">%&gt;%</span> </span>
+<span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">summarise</span>(<span class="at">mean_mother_age=</span> <span class="fu">mean</span>(mother_age, <span class="at">na.rm=</span>T),</span>
+<span id="cb34-3"><a href="#cb34-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">sd_mother_age =</span> <span class="fu">sd</span>(mother_age, <span class="at">na.rm=</span>T),</span>
+<span id="cb34-4"><a href="#cb34-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">min_mother_age =</span> <span class="fu">min</span>(mother_age, <span class="at">na.rm=</span>T),</span>
+<span id="cb34-5"><a href="#cb34-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">max_mother_age =</span> <span class="fu">max</span>(mother_age, <span class="at">na.rm=</span>T))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 1 × 4
+  mean_mother_age sd_mother_age min_mother_age max_mother_age
+            &lt;dbl&gt;         &lt;dbl&gt;          &lt;dbl&gt;          &lt;dbl&gt;
+1            30.4          3.39             21             35</code></pre>
+</div>
+</div>
+</section>
+<section id="now-lets-look-at-this-through-ethnicities" class="level4">
+<h4 class="anchored" data-anchor-id="now-lets-look-at-this-through-ethnicities">Now let’s look at this through ethnicities:</h4>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb36"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a>Fertility_2 <span class="sc">%&gt;%</span> </span>
+<span id="cb36-2"><a href="#cb36-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-3"><a href="#cb36-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(ethnicity) <span class="sc">%&gt;%</span> </span>
+<span id="cb36-4"><a href="#cb36-4" aria-hidden="true" tabindex="-1"></a>   dplyr<span class="sc">::</span><span class="fu">summarise</span>(<span class="at">mean_mother_age=</span> <span class="fu">mean</span>(mother_age, <span class="at">na.rm=</span>T),</span>
+<span id="cb36-5"><a href="#cb36-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">sd_mother_age =</span> <span class="fu">sd</span>(mother_age, <span class="at">na.rm=</span>T),</span>
+<span id="cb36-6"><a href="#cb36-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">min_mother_age =</span> <span class="fu">min</span>(mother_age, <span class="at">na.rm=</span>T),</span>
+<span id="cb36-7"><a href="#cb36-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">max_mother_age =</span> <span class="fu">max</span>(mother_age, <span class="at">na.rm=</span>T))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 6 × 5
+  ethnicity      mean_mother_age sd_mother_age min_mother_age max_mother_age
+  &lt;fct&gt;                    &lt;dbl&gt;         &lt;dbl&gt;          &lt;dbl&gt;          &lt;dbl&gt;
+1 AFAM                      29.9          3.52             21             35
+2 AFAM+Hispanic             30.0          3.60             22             35
+3 Caucasian                 30.5          3.34             21             35
+4 Hispanic                  29.9          3.63             21             35
+5 Hispanic+Other            29.2          3.71             21             35
+6 Other                     30.7          3.26             21             35</code></pre>
+</div>
+</div>
+</section>
+<section id="summarising-work-weeks" class="level4">
+<h4 class="anchored" data-anchor-id="summarising-work-weeks">Summarising work weeks:</h4>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb38"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a>Fertility_2 <span class="sc">%&gt;%</span> </span>
+<span id="cb38-2"><a href="#cb38-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(ethnicity) <span class="sc">%&gt;%</span> </span>
+<span id="cb38-3"><a href="#cb38-3" aria-hidden="true" tabindex="-1"></a> dplyr<span class="sc">::</span><span class="fu">summarise</span>(</span>
+<span id="cb38-4"><a href="#cb38-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">mean_work_weeks =</span> <span class="fu">mean</span>(work_weeks, <span class="at">na.rm=</span>T),</span>
+<span id="cb38-5"><a href="#cb38-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">sd_work_weeks =</span> <span class="fu">sd</span>(work_weeks, <span class="at">na.rm=</span>T),</span>
+<span id="cb38-6"><a href="#cb38-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">min_work_weeks =</span> <span class="fu">min</span>(work_weeks, <span class="at">na.rm=</span>T),</span>
+<span id="cb38-7"><a href="#cb38-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">max_work_weeks =</span> <span class="fu">max</span>(work_weeks, <span class="at">na.rm=</span>T),</span>
+<span id="cb38-8"><a href="#cb38-8" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb38-9"><a href="#cb38-9" aria-hidden="true" tabindex="-1"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 6 × 5
+  ethnicity      mean_work_weeks sd_work_weeks min_work_weeks max_work_weeks
+  &lt;fct&gt;                    &lt;dbl&gt;         &lt;dbl&gt;          &lt;dbl&gt;          &lt;dbl&gt;
+1 AFAM                      29.2          22.4              0             52
+2 AFAM+Hispanic             22.4          23.2              0             52
+3 Caucasian                 18.4          21.7              0             52
+4 Hispanic                  18.1          21.7              0             52
+5 Hispanic+Other            18.3          21.5              0             52
+6 Other                     21.4          22.8              0             52</code></pre>
+</div>
+</div>
+<p>African American (AFAM) women tend to work more on average (around 29 weeks a year) compared to other ethnicities. One of the factors contributing to this could be the greater economic or social pressures that their community has to face that make continuous participation in the labor market less of a choice and more of a necessity.</p>
+<p>Hispanic and Caucasian women record the lowest mean number of work weeks (18.06 and 18.4, respectively).</p>
+<p>Similarly, other hypotheses could be:</p>
+<ul>
+<li><p>A possible explanation is that Hispanic women may benefit from joint-family like support systems, allowing them to focus less on paid work while still managing household responsibilities.</p></li>
+<li><p>Caucasian women, on the other hand, may be less likely to head single-parent households, and also, the fact that Caucasian men tend to earn higher wages compared to other ethnic groups, there may be less financial necessity for them to engage in consistent employment.</p>
+<p><em>Do cultural norms and socioeconomic positioning shape women’s participation in the labor force?</em></p></li>
+</ul>
+</section>
+<section id="let-us-try-plotting-boxplots-in-order-to-see-how-that-looks-across-ages" class="level4">
+<h4 class="anchored" data-anchor-id="let-us-try-plotting-boxplots-in-order-to-see-how-that-looks-across-ages">Let us try plotting boxplots in order to see how that looks across ages:</h4>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb40"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a>Fertility_2 <span class="sc">%&gt;%</span> </span>
+<span id="cb40-2"><a href="#cb40-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gf_boxplot</span>(ethnicity<span class="sc">~</span>mother_age, <span class="at">orientation =</span> <span class="st">"y"</span>, <span class="at">color =</span><span class="sc">~</span> havemorekids) <span class="sc">%&gt;%</span> </span>
+<span id="cb40-3"><a href="#cb40-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gf_labs</span>(<span class="at">title=</span><span class="st">"Ages of mothers who have 2 or more kids across ethnicities"</span>,</span>
+<span id="cb40-4"><a href="#cb40-4" aria-hidden="true" tabindex="-1"></a>          <span class="at">subtitle=</span><span class="st">"Distributed on the basis of having 2 or more children"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="fertility-final_files/figure-html/unnamed-chunk-15-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>For most ethnicities, the age distribution for mothers with more kids skews slightly higher than those without.</p>
+<p>One finding is that different ethnic groups have children at different average ages:</p>
+<ul>
+<li><p>Mothers in the Hispanic+Other category have children at more diverse ages, some quite young, some much older.</p></li>
+<li><p>In contrast, groups like Other have narrower boxes, meaning most mothers fall within a smaller, tighter age range.</p></li>
+<li><p>Hispanic and Hispanic + Other mothers seem to have slightly younger distributions compared to Caucasian or AFAM mothers.</p></li>
+</ul>
+</section>
+</section>
+</section>
+<section id="crosstable-overview" class="level2">
+<h2 class="anchored" data-anchor-id="crosstable-overview">Crosstable Overview</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb41"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a><span class="fu">crosstable</span>(mother_age <span class="sc">+</span> work_weeks <span class="sc">~</span> havemorekids<span class="sc">+</span>children_gender <span class="sc">+</span> ethnicity,</span>
+<span id="cb41-2"><a href="#cb41-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">data =</span> Fertility_2</span>
+<span id="cb41-3"><a href="#cb41-3" aria-hidden="true" tabindex="-1"></a>) <span class="sc">%&gt;%</span></span>
+<span id="cb41-4"><a href="#cb41-4" aria-hidden="true" tabindex="-1"></a>  crosstable<span class="sc">::</span><span class="fu">as_flextable</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div class="tabwid"><style>.cl-7c39e40e{table-layout:auto;}.cl-7c3170da{font-family:'Helvetica';font-size:11pt;font-weight:bold;font-style:normal;text-decoration:none;color:rgba(0, 0, 0, 1.00);background-color:transparent;}.cl-7c3170f8{font-family:'Helvetica';font-size:11pt;font-weight:normal;font-style:normal;text-decoration:none;color:rgba(0, 0, 0, 1.00);background-color:transparent;}.cl-7c343c8e{margin:0;text-align:center;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:5pt;padding-top:5pt;padding-left:5pt;padding-right:5pt;line-height: 1;background-color:transparent;}.cl-7c343c98{margin:0;text-align:left;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:5pt;padding-top:5pt;padding-left:5pt;padding-right:5pt;line-height: 1;background-color:transparent;}.cl-7c345f2a{background-color:transparent;vertical-align: middle;border-bottom: 1pt solid rgba(0, 0, 0, 1.00);border-top: 1.5pt solid rgba(0, 0, 0, 1.00);border-left: 1pt solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(255, 255, 255, 0.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-7c345f2b{background-color:transparent;vertical-align: middle;border-bottom: 1pt solid rgba(0, 0, 0, 1.00);border-top: 1.5pt solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(255, 255, 255, 0.00);border-right: 0 solid rgba(255, 255, 255, 0.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-7c345f2c{background-color:transparent;vertical-align: middle;border-bottom: 1pt solid rgba(0, 0, 0, 1.00);border-top: 1.5pt solid rgba(0, 0, 0, 1.00);border-left: 1pt solid rgba(0, 0, 0, 1.00);border-right: 1pt solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-7c345f34{background-color:transparent;vertical-align: middle;border-bottom: 1pt solid rgba(0, 0, 0, 1.00);border-top: 1.5pt solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(255, 255, 255, 0.00);border-right: 1pt solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-7c345f35{background-color:transparent;vertical-align: middle;border-bottom: 1pt solid rgba(0, 0, 0, 1.00);border-top: 1pt solid rgba(0, 0, 0, 1.00);border-left: 1pt solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(255, 255, 255, 0.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-7c345f3e{background-color:transparent;vertical-align: middle;border-bottom: 1pt solid rgba(0, 0, 0, 1.00);border-top: 1pt solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(255, 255, 255, 0.00);border-right: 0 solid rgba(255, 255, 255, 0.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-7c345f3f{background-color:transparent;vertical-align: middle;border-bottom: 1pt solid rgba(0, 0, 0, 1.00);border-top: 1pt solid rgba(0, 0, 0, 1.00);border-left: 1pt solid rgba(0, 0, 0, 1.00);border-right: 1pt solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-7c345f40{background-color:transparent;vertical-align: middle;border-bottom: 1pt solid rgba(0, 0, 0, 1.00);border-top: 1pt solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(255, 255, 255, 0.00);border-right: 1pt solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-7c345f48{background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(0, 0, 0, 1.00);border-top: 1pt solid rgba(0, 0, 0, 1.00);border-left: 1pt solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(255, 255, 255, 0.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-7c345f49{background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(0, 0, 0, 1.00);border-top: 1pt solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(255, 255, 255, 0.00);border-right: 0 solid rgba(255, 255, 255, 0.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-7c345f52{background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(0, 0, 0, 1.00);border-top: 1pt solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(255, 255, 255, 0.00);border-right: 1pt solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-7c345f53{background-color:transparent;vertical-align: middle;border-bottom: 1pt solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 1pt solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-7c345f54{background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-7c345f5c{background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 1pt solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-7c345f5d{background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 1pt solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-7c345f66{background-color:transparent;vertical-align: middle;border-bottom: 1pt solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-7c345f67{background-color:transparent;vertical-align: middle;border-bottom: 1pt solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 1pt solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-7c345f68{background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 1pt solid rgba(0, 0, 0, 1.00);border-left: 1pt solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-7c345f70{background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 1pt solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-7c345f7a{background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 1pt solid rgba(0, 0, 0, 1.00);border-left: 1pt solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-7c345f7b{background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 1pt solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 1pt solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-7c345f7c{background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 1pt solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-7c345f84{background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-7c345f85{background-color:transparent;vertical-align: middle;border-bottom: 1.5pt solid rgba(102, 102, 102, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 1pt solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}</style><table data-quarto-disable-processing="true" class="cl-7c39e40e"><thead><tr style="overflow-wrap:break-word;"><th colspan="2" class="cl-7c345f2a"><p class="cl-7c343c8e"><span class="cl-7c3170da">ethnicity</span></p></th><th colspan="8" class="cl-7c345f2a"><p class="cl-7c343c8e"><span class="cl-7c3170da">AFAM</span></p></th><th colspan="8" class="cl-7c345f2a"><p class="cl-7c343c8e"><span class="cl-7c3170da">AFAM+Hispanic</span></p></th><th colspan="8" class="cl-7c345f2a"><p class="cl-7c343c8e"><span class="cl-7c3170da">Caucasian</span></p></th><th colspan="8" class="cl-7c345f2a"><p class="cl-7c343c8e"><span class="cl-7c3170da">Hispanic</span></p></th><th colspan="8" class="cl-7c345f2a"><p class="cl-7c343c8e"><span class="cl-7c3170da">Hispanic+Other</span></p></th><th colspan="8" class="cl-7c345f2c"><p class="cl-7c343c8e"><span class="cl-7c3170da">Other</span></p></th></tr><tr style="overflow-wrap:break-word;"><th colspan="2" class="cl-7c345f35"><p class="cl-7c343c8e"><span class="cl-7c3170da">children_gender</span></p></th><th colspan="2" class="cl-7c345f35"><p class="cl-7c343c8e"><span class="cl-7c3170da">female-female</span></p></th><th colspan="2" class="cl-7c345f35"><p class="cl-7c343c8e"><span class="cl-7c3170da">female-male</span></p></th><th colspan="2" class="cl-7c345f35"><p class="cl-7c343c8e"><span class="cl-7c3170da">male-female</span></p></th><th colspan="2" class="cl-7c345f35"><p class="cl-7c343c8e"><span class="cl-7c3170da">male-male</span></p></th><th colspan="2" class="cl-7c345f35"><p class="cl-7c343c8e"><span class="cl-7c3170da">female-female</span></p></th><th colspan="2" class="cl-7c345f35"><p class="cl-7c343c8e"><span class="cl-7c3170da">female-male</span></p></th><th colspan="2" class="cl-7c345f35"><p class="cl-7c343c8e"><span class="cl-7c3170da">male-female</span></p></th><th colspan="2" class="cl-7c345f35"><p class="cl-7c343c8e"><span class="cl-7c3170da">male-male</span></p></th><th colspan="2" class="cl-7c345f35"><p class="cl-7c343c8e"><span class="cl-7c3170da">female-female</span></p></th><th colspan="2" class="cl-7c345f35"><p class="cl-7c343c8e"><span class="cl-7c3170da">female-male</span></p></th><th colspan="2" class="cl-7c345f35"><p class="cl-7c343c8e"><span class="cl-7c3170da">male-female</span></p></th><th colspan="2" class="cl-7c345f35"><p class="cl-7c343c8e"><span class="cl-7c3170da">male-male</span></p></th><th colspan="2" class="cl-7c345f35"><p class="cl-7c343c8e"><span class="cl-7c3170da">female-female</span></p></th><th colspan="2" class="cl-7c345f35"><p class="cl-7c343c8e"><span class="cl-7c3170da">female-male</span></p></th><th colspan="2" class="cl-7c345f35"><p class="cl-7c343c8e"><span class="cl-7c3170da">male-female</span></p></th><th colspan="2" class="cl-7c345f35"><p class="cl-7c343c8e"><span class="cl-7c3170da">male-male</span></p></th><th colspan="2" class="cl-7c345f35"><p class="cl-7c343c8e"><span class="cl-7c3170da">female-female</span></p></th><th colspan="2" class="cl-7c345f35"><p class="cl-7c343c8e"><span class="cl-7c3170da">female-male</span></p></th><th colspan="2" class="cl-7c345f35"><p class="cl-7c343c8e"><span class="cl-7c3170da">male-female</span></p></th><th colspan="2" class="cl-7c345f35"><p class="cl-7c343c8e"><span class="cl-7c3170da">male-male</span></p></th><th colspan="2" class="cl-7c345f35"><p class="cl-7c343c8e"><span class="cl-7c3170da">female-female</span></p></th><th colspan="2" class="cl-7c345f35"><p class="cl-7c343c8e"><span class="cl-7c3170da">female-male</span></p></th><th colspan="2" class="cl-7c345f35"><p class="cl-7c343c8e"><span class="cl-7c3170da">male-female</span></p></th><th colspan="2" class="cl-7c345f3f"><p class="cl-7c343c8e"><span class="cl-7c3170da">male-male</span></p></th></tr><tr style="overflow-wrap:break-word;"><th colspan="2" class="cl-7c345f48"><p class="cl-7c343c8e"><span class="cl-7c3170da">havemorekids</span></p></th><th class="cl-7c345f48"><p class="cl-7c343c8e"><span class="cl-7c3170da">no</span></p></th><th class="cl-7c345f49"><p class="cl-7c343c8e"><span class="cl-7c3170da">yes</span></p></th><th class="cl-7c345f48"><p class="cl-7c343c8e"><span class="cl-7c3170da">no</span></p></th><th class="cl-7c345f49"><p class="cl-7c343c8e"><span class="cl-7c3170da">yes</span></p></th><th class="cl-7c345f48"><p class="cl-7c343c8e"><span class="cl-7c3170da">no</span></p></th><th class="cl-7c345f49"><p class="cl-7c343c8e"><span class="cl-7c3170da">yes</span></p></th><th class="cl-7c345f48"><p class="cl-7c343c8e"><span class="cl-7c3170da">no</span></p></th><th class="cl-7c345f49"><p class="cl-7c343c8e"><span class="cl-7c3170da">yes</span></p></th><th class="cl-7c345f48"><p class="cl-7c343c8e"><span class="cl-7c3170da">no</span></p></th><th class="cl-7c345f49"><p class="cl-7c343c8e"><span class="cl-7c3170da">yes</span></p></th><th class="cl-7c345f48"><p class="cl-7c343c8e"><span class="cl-7c3170da">no</span></p></th><th class="cl-7c345f49"><p class="cl-7c343c8e"><span class="cl-7c3170da">yes</span></p></th><th class="cl-7c345f48"><p class="cl-7c343c8e"><span class="cl-7c3170da">no</span></p></th><th class="cl-7c345f49"><p class="cl-7c343c8e"><span class="cl-7c3170da">yes</span></p></th><th class="cl-7c345f48"><p class="cl-7c343c8e"><span class="cl-7c3170da">no</span></p></th><th class="cl-7c345f49"><p class="cl-7c343c8e"><span class="cl-7c3170da">yes</span></p></th><th class="cl-7c345f48"><p class="cl-7c343c8e"><span class="cl-7c3170da">no</span></p></th><th class="cl-7c345f49"><p class="cl-7c343c8e"><span class="cl-7c3170da">yes</span></p></th><th class="cl-7c345f48"><p class="cl-7c343c8e"><span class="cl-7c3170da">no</span></p></th><th class="cl-7c345f49"><p class="cl-7c343c8e"><span class="cl-7c3170da">yes</span></p></th><th class="cl-7c345f48"><p class="cl-7c343c8e"><span class="cl-7c3170da">no</span></p></th><th class="cl-7c345f49"><p class="cl-7c343c8e"><span class="cl-7c3170da">yes</span></p></th><th class="cl-7c345f48"><p class="cl-7c343c8e"><span class="cl-7c3170da">no</span></p></th><th class="cl-7c345f49"><p class="cl-7c343c8e"><span class="cl-7c3170da">yes</span></p></th><th class="cl-7c345f48"><p class="cl-7c343c8e"><span class="cl-7c3170da">no</span></p></th><th class="cl-7c345f49"><p class="cl-7c343c8e"><span class="cl-7c3170da">yes</span></p></th><th class="cl-7c345f48"><p class="cl-7c343c8e"><span class="cl-7c3170da">no</span></p></th><th class="cl-7c345f49"><p class="cl-7c343c8e"><span class="cl-7c3170da">yes</span></p></th><th class="cl-7c345f48"><p class="cl-7c343c8e"><span class="cl-7c3170da">no</span></p></th><th class="cl-7c345f49"><p class="cl-7c343c8e"><span class="cl-7c3170da">yes</span></p></th><th class="cl-7c345f48"><p class="cl-7c343c8e"><span class="cl-7c3170da">no</span></p></th><th class="cl-7c345f49"><p class="cl-7c343c8e"><span class="cl-7c3170da">yes</span></p></th><th class="cl-7c345f48"><p class="cl-7c343c8e"><span class="cl-7c3170da">no</span></p></th><th class="cl-7c345f49"><p class="cl-7c343c8e"><span class="cl-7c3170da">yes</span></p></th><th class="cl-7c345f48"><p class="cl-7c343c8e"><span class="cl-7c3170da">no</span></p></th><th class="cl-7c345f49"><p class="cl-7c343c8e"><span class="cl-7c3170da">yes</span></p></th><th class="cl-7c345f48"><p class="cl-7c343c8e"><span class="cl-7c3170da">no</span></p></th><th class="cl-7c345f49"><p class="cl-7c343c8e"><span class="cl-7c3170da">yes</span></p></th><th class="cl-7c345f48"><p class="cl-7c343c8e"><span class="cl-7c3170da">no</span></p></th><th class="cl-7c345f49"><p class="cl-7c343c8e"><span class="cl-7c3170da">yes</span></p></th><th class="cl-7c345f48"><p class="cl-7c343c8e"><span class="cl-7c3170da">no</span></p></th><th class="cl-7c345f49"><p class="cl-7c343c8e"><span class="cl-7c3170da">yes</span></p></th><th class="cl-7c345f48"><p class="cl-7c343c8e"><span class="cl-7c3170da">no</span></p></th><th class="cl-7c345f49"><p class="cl-7c343c8e"><span class="cl-7c3170da">yes</span></p></th><th class="cl-7c345f48"><p class="cl-7c343c8e"><span class="cl-7c3170da">no</span></p></th><th class="cl-7c345f49"><p class="cl-7c343c8e"><span class="cl-7c3170da">yes</span></p></th><th class="cl-7c345f48"><p class="cl-7c343c8e"><span class="cl-7c3170da">no</span></p></th><th class="cl-7c345f52"><p class="cl-7c343c8e"><span class="cl-7c3170da">yes</span></p></th></tr></thead><tbody><tr style="overflow-wrap:break-word;"><td rowspan="4" class="cl-7c345f53"><p class="cl-7c343c98"><span class="cl-7c3170f8">mother_age</span></p></td><td class="cl-7c345f54"><p class="cl-7c343c98"><span class="cl-7c3170f8">Min / Max</span></p></td><td class="cl-7c345f5c"><p class="cl-7c343c98"><span class="cl-7c3170f8">21.0 / 35.0</span></p></td><td class="cl-7c345f54"><p class="cl-7c343c98"><span class="cl-7c3170f8">21.0 / 35.0</span></p></td><td class="cl-7c345f5c"><p class="cl-7c343c98"><span class="cl-7c3170f8">21.0 / 35.0</span></p></td><td class="cl-7c345f54"><p class="cl-7c343c98"><span class="cl-7c3170f8">21.0 / 35.0</span></p></td><td class="cl-7c345f5c"><p class="cl-7c343c98"><span class="cl-7c3170f8">21.0 / 35.0</span></p></td><td class="cl-7c345f54"><p class="cl-7c343c98"><span class="cl-7c3170f8">21.0 / 35.0</span></p></td><td class="cl-7c345f5c"><p class="cl-7c343c98"><span class="cl-7c3170f8">21.0 / 35.0</span></p></td><td class="cl-7c345f54"><p class="cl-7c343c98"><span class="cl-7c3170f8">21.0 / 35.0</span></p></td><td class="cl-7c345f5c"><p class="cl-7c343c98"><span class="cl-7c3170f8">23.0 / 34.0</span></p></td><td class="cl-7c345f54"><p class="cl-7c343c98"><span class="cl-7c3170f8">23.0 / 35.0</span></p></td><td class="cl-7c345f5c"><p class="cl-7c343c98"><span class="cl-7c3170f8">22.0 / 35.0</span></p></td><td class="cl-7c345f54"><p class="cl-7c343c98"><span class="cl-7c3170f8">22.0 / 34.0</span></p></td><td class="cl-7c345f5c"><p class="cl-7c343c98"><span class="cl-7c3170f8">25.0 / 35.0</span></p></td><td class="cl-7c345f54"><p class="cl-7c343c98"><span class="cl-7c3170f8">22.0 / 35.0</span></p></td><td class="cl-7c345f5c"><p class="cl-7c343c98"><span class="cl-7c3170f8">22.0 / 35.0</span></p></td><td class="cl-7c345f54"><p class="cl-7c343c98"><span class="cl-7c3170f8">22.0 / 35.0</span></p></td><td class="cl-7c345f5c"><p class="cl-7c343c98"><span class="cl-7c3170f8">21.0 / 35.0</span></p></td><td class="cl-7c345f54"><p class="cl-7c343c98"><span class="cl-7c3170f8">21.0 / 35.0</span></p></td><td class="cl-7c345f5c"><p class="cl-7c343c98"><span class="cl-7c3170f8">21.0 / 35.0</span></p></td><td class="cl-7c345f54"><p class="cl-7c343c98"><span class="cl-7c3170f8">21.0 / 35.0</span></p></td><td class="cl-7c345f5c"><p class="cl-7c343c98"><span class="cl-7c3170f8">21.0 / 35.0</span></p></td><td class="cl-7c345f54"><p class="cl-7c343c98"><span class="cl-7c3170f8">21.0 / 35.0</span></p></td><td class="cl-7c345f5c"><p class="cl-7c343c98"><span class="cl-7c3170f8">21.0 / 35.0</span></p></td><td class="cl-7c345f54"><p class="cl-7c343c98"><span class="cl-7c3170f8">21.0 / 35.0</span></p></td><td class="cl-7c345f5c"><p class="cl-7c343c98"><span class="cl-7c3170f8">21.0 / 35.0</span></p></td><td class="cl-7c345f54"><p class="cl-7c343c98"><span class="cl-7c3170f8">21.0 / 35.0</span></p></td><td class="cl-7c345f5c"><p class="cl-7c343c98"><span class="cl-7c3170f8">21.0 / 35.0</span></p></td><td class="cl-7c345f54"><p class="cl-7c343c98"><span class="cl-7c3170f8">21.0 / 35.0</span></p></td><td class="cl-7c345f5c"><p class="cl-7c343c98"><span class="cl-7c3170f8">21.0 / 35.0</span></p></td><td class="cl-7c345f54"><p class="cl-7c343c98"><span class="cl-7c3170f8">21.0 / 35.0</span></p></td><td class="cl-7c345f5c"><p class="cl-7c343c98"><span class="cl-7c3170f8">21.0 / 35.0</span></p></td><td class="cl-7c345f54"><p class="cl-7c343c98"><span class="cl-7c3170f8">21.0 / 35.0</span></p></td><td class="cl-7c345f5c"><p class="cl-7c343c98"><span class="cl-7c3170f8">21.0 / 35.0</span></p></td><td class="cl-7c345f54"><p class="cl-7c343c98"><span class="cl-7c3170f8">21.0 / 35.0</span></p></td><td class="cl-7c345f5c"><p class="cl-7c343c98"><span class="cl-7c3170f8">21.0 / 35.0</span></p></td><td class="cl-7c345f54"><p class="cl-7c343c98"><span class="cl-7c3170f8">21.0 / 35.0</span></p></td><td class="cl-7c345f5c"><p class="cl-7c343c98"><span class="cl-7c3170f8">21.0 / 35.0</span></p></td><td class="cl-7c345f54"><p class="cl-7c343c98"><span class="cl-7c3170f8">21.0 / 35.0</span></p></td><td class="cl-7c345f5c"><p class="cl-7c343c98"><span class="cl-7c3170f8">21.0 / 35.0</span></p></td><td class="cl-7c345f54"><p class="cl-7c343c98"><span class="cl-7c3170f8">21.0 / 35.0</span></p></td><td class="cl-7c345f5c"><p class="cl-7c343c98"><span class="cl-7c3170f8">21.0 / 35.0</span></p></td><td class="cl-7c345f54"><p class="cl-7c343c98"><span class="cl-7c3170f8">21.0 / 35.0</span></p></td><td class="cl-7c345f5c"><p class="cl-7c343c98"><span class="cl-7c3170f8">21.0 / 35.0</span></p></td><td class="cl-7c345f54"><p class="cl-7c343c98"><span class="cl-7c3170f8">21.0 / 35.0</span></p></td><td class="cl-7c345f5c"><p class="cl-7c343c98"><span class="cl-7c3170f8">21.0 / 35.0</span></p></td><td class="cl-7c345f54"><p class="cl-7c343c98"><span class="cl-7c3170f8">21.0 / 35.0</span></p></td><td class="cl-7c345f5c"><p class="cl-7c343c98"><span class="cl-7c3170f8">21.0 / 35.0</span></p></td><td class="cl-7c345f5d"><p class="cl-7c343c98"><span class="cl-7c3170f8">21.0 / 35.0</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-7c345f54"><p class="cl-7c343c98"><span class="cl-7c3170f8">Med [IQR]</span></p></td><td class="cl-7c345f5c"><p class="cl-7c343c98"><span class="cl-7c3170f8">30.0 [27.0;32.0]</span></p></td><td class="cl-7c345f54"><p class="cl-7c343c98"><span class="cl-7c3170f8">31.0 [28.0;33.0]</span></p></td><td class="cl-7c345f5c"><p class="cl-7c343c98"><span class="cl-7c3170f8">30.0 [27.0;33.0]</span></p></td><td class="cl-7c345f54"><p class="cl-7c343c98"><span class="cl-7c3170f8">31.0 [28.0;33.0]</span></p></td><td class="cl-7c345f5c"><p class="cl-7c343c98"><span class="cl-7c3170f8">30.0 [27.0;33.0]</span></p></td><td class="cl-7c345f54"><p class="cl-7c343c98"><span class="cl-7c3170f8">31.0 [28.0;33.0]</span></p></td><td class="cl-7c345f5c"><p class="cl-7c343c98"><span class="cl-7c3170f8">30.0 [27.0;32.0]</span></p></td><td class="cl-7c345f54"><p class="cl-7c343c98"><span class="cl-7c3170f8">31.0 [28.0;33.0]</span></p></td><td class="cl-7c345f5c"><p class="cl-7c343c98"><span class="cl-7c3170f8">27.5 [25.0;29.8]</span></p></td><td class="cl-7c345f54"><p class="cl-7c343c98"><span class="cl-7c3170f8">29.0 [28.0;32.0]</span></p></td><td class="cl-7c345f5c"><p class="cl-7c343c98"><span class="cl-7c3170f8">32.0 [27.0;34.0]</span></p></td><td class="cl-7c345f54"><p class="cl-7c343c98"><span class="cl-7c3170f8">30.5 [27.0;33.0]</span></p></td><td class="cl-7c345f5c"><p class="cl-7c343c98"><span class="cl-7c3170f8">29.5 [27.2;32.0]</span></p></td><td class="cl-7c345f54"><p class="cl-7c343c98"><span class="cl-7c3170f8">32.0 [29.0;34.0]</span></p></td><td class="cl-7c345f5c"><p class="cl-7c343c98"><span class="cl-7c3170f8">29.0 [27.0;33.0]</span></p></td><td class="cl-7c345f54"><p class="cl-7c343c98"><span class="cl-7c3170f8">32.0 [31.0;34.0]</span></p></td><td class="cl-7c345f5c"><p class="cl-7c343c98"><span class="cl-7c3170f8">31.0 [28.0;33.0]</span></p></td><td class="cl-7c345f54"><p class="cl-7c343c98"><span class="cl-7c3170f8">32.0 [29.0;33.0]</span></p></td><td class="cl-7c345f5c"><p class="cl-7c343c98"><span class="cl-7c3170f8">31.0 [28.0;33.0]</span></p></td><td class="cl-7c345f54"><p class="cl-7c343c98"><span class="cl-7c3170f8">32.0 [29.0;33.0]</span></p></td><td class="cl-7c345f5c"><p class="cl-7c343c98"><span class="cl-7c3170f8">31.0 [28.0;33.0]</span></p></td><td class="cl-7c345f54"><p class="cl-7c343c98"><span class="cl-7c3170f8">32.0 [29.0;34.0]</span></p></td><td class="cl-7c345f5c"><p class="cl-7c343c98"><span class="cl-7c3170f8">31.0 [28.0;33.0]</span></p></td><td class="cl-7c345f54"><p class="cl-7c343c98"><span class="cl-7c3170f8">32.0 [29.0;33.0]</span></p></td><td class="cl-7c345f5c"><p class="cl-7c343c98"><span class="cl-7c3170f8">30.0 [26.0;32.0]</span></p></td><td class="cl-7c345f54"><p class="cl-7c343c98"><span class="cl-7c3170f8">31.0 [28.0;33.0]</span></p></td><td class="cl-7c345f5c"><p class="cl-7c343c98"><span class="cl-7c3170f8">30.0 [27.0;32.0]</span></p></td><td class="cl-7c345f54"><p class="cl-7c343c98"><span class="cl-7c3170f8">31.0 [28.0;33.0]</span></p></td><td class="cl-7c345f5c"><p class="cl-7c343c98"><span class="cl-7c3170f8">30.0 [27.0;32.0]</span></p></td><td class="cl-7c345f54"><p class="cl-7c343c98"><span class="cl-7c3170f8">31.0 [28.0;33.0]</span></p></td><td class="cl-7c345f5c"><p class="cl-7c343c98"><span class="cl-7c3170f8">29.0 [27.0;32.0]</span></p></td><td class="cl-7c345f54"><p class="cl-7c343c98"><span class="cl-7c3170f8">31.0 [28.0;33.0]</span></p></td><td class="cl-7c345f5c"><p class="cl-7c343c98"><span class="cl-7c3170f8">29.0 [25.0;32.0]</span></p></td><td class="cl-7c345f54"><p class="cl-7c343c98"><span class="cl-7c3170f8">30.0 [27.0;33.0]</span></p></td><td class="cl-7c345f5c"><p class="cl-7c343c98"><span class="cl-7c3170f8">29.0 [25.0;31.2]</span></p></td><td class="cl-7c345f54"><p class="cl-7c343c98"><span class="cl-7c3170f8">30.0 [27.0;33.0]</span></p></td><td class="cl-7c345f5c"><p class="cl-7c343c98"><span class="cl-7c3170f8">28.0 [26.0;32.0]</span></p></td><td class="cl-7c345f54"><p class="cl-7c343c98"><span class="cl-7c3170f8">31.0 [28.0;33.0]</span></p></td><td class="cl-7c345f5c"><p class="cl-7c343c98"><span class="cl-7c3170f8">28.0 [25.0;31.0]</span></p></td><td class="cl-7c345f54"><p class="cl-7c343c98"><span class="cl-7c3170f8">30.0 [28.0;33.0]</span></p></td><td class="cl-7c345f5c"><p class="cl-7c343c98"><span class="cl-7c3170f8">31.0 [28.0;33.0]</span></p></td><td class="cl-7c345f54"><p class="cl-7c343c98"><span class="cl-7c3170f8">31.0 [29.0;33.0]</span></p></td><td class="cl-7c345f5c"><p class="cl-7c343c98"><span class="cl-7c3170f8">31.0 [29.0;33.0]</span></p></td><td class="cl-7c345f54"><p class="cl-7c343c98"><span class="cl-7c3170f8">32.0 [29.0;33.0]</span></p></td><td class="cl-7c345f5c"><p class="cl-7c343c98"><span class="cl-7c3170f8">31.0 [29.0;33.0]</span></p></td><td class="cl-7c345f54"><p class="cl-7c343c98"><span class="cl-7c3170f8">31.0 [28.0;34.0]</span></p></td><td class="cl-7c345f5c"><p class="cl-7c343c98"><span class="cl-7c3170f8">31.0 [29.0;33.0]</span></p></td><td class="cl-7c345f5d"><p class="cl-7c343c98"><span class="cl-7c3170f8">32.0 [28.0;34.0]</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-7c345f54"><p class="cl-7c343c98"><span class="cl-7c3170f8">Mean (std)</span></p></td><td class="cl-7c345f5c"><p class="cl-7c343c98"><span class="cl-7c3170f8">29.6 (3.5)</span></p></td><td class="cl-7c345f54"><p class="cl-7c343c98"><span class="cl-7c3170f8">30.2 (3.5)</span></p></td><td class="cl-7c345f5c"><p class="cl-7c343c98"><span class="cl-7c3170f8">29.8 (3.5)</span></p></td><td class="cl-7c345f54"><p class="cl-7c343c98"><span class="cl-7c3170f8">30.2 (3.5)</span></p></td><td class="cl-7c345f5c"><p class="cl-7c343c98"><span class="cl-7c3170f8">29.7 (3.5)</span></p></td><td class="cl-7c345f54"><p class="cl-7c343c98"><span class="cl-7c3170f8">30.2 (3.5)</span></p></td><td class="cl-7c345f5c"><p class="cl-7c343c98"><span class="cl-7c3170f8">29.5 (3.5)</span></p></td><td class="cl-7c345f54"><p class="cl-7c343c98"><span class="cl-7c3170f8">30.5 (3.4)</span></p></td><td class="cl-7c345f5c"><p class="cl-7c343c98"><span class="cl-7c3170f8">27.8 (3.2)</span></p></td><td class="cl-7c345f54"><p class="cl-7c343c98"><span class="cl-7c3170f8">29.6 (3.3)</span></p></td><td class="cl-7c345f5c"><p class="cl-7c343c98"><span class="cl-7c3170f8">30.7 (3.9)</span></p></td><td class="cl-7c345f54"><p class="cl-7c343c98"><span class="cl-7c3170f8">29.9 (3.7)</span></p></td><td class="cl-7c345f5c"><p class="cl-7c343c98"><span class="cl-7c3170f8">29.4 (3.2)</span></p></td><td class="cl-7c345f54"><p class="cl-7c343c98"><span class="cl-7c3170f8">30.8 (4.0)</span></p></td><td class="cl-7c345f5c"><p class="cl-7c343c98"><span class="cl-7c3170f8">29.7 (3.6)</span></p></td><td class="cl-7c345f54"><p class="cl-7c343c98"><span class="cl-7c3170f8">31.5 (3.5)</span></p></td><td class="cl-7c345f5c"><p class="cl-7c343c98"><span class="cl-7c3170f8">30.1 (3.4)</span></p></td><td class="cl-7c345f54"><p class="cl-7c343c98"><span class="cl-7c3170f8">30.9 (3.2)</span></p></td><td class="cl-7c345f5c"><p class="cl-7c343c98"><span class="cl-7c3170f8">30.2 (3.4)</span></p></td><td class="cl-7c345f54"><p class="cl-7c343c98"><span class="cl-7c3170f8">31.0 (3.2)</span></p></td><td class="cl-7c345f5c"><p class="cl-7c343c98"><span class="cl-7c3170f8">30.3 (3.4)</span></p></td><td class="cl-7c345f54"><p class="cl-7c343c98"><span class="cl-7c3170f8">31.0 (3.2)</span></p></td><td class="cl-7c345f5c"><p class="cl-7c343c98"><span class="cl-7c3170f8">30.2 (3.4)</span></p></td><td class="cl-7c345f54"><p class="cl-7c343c98"><span class="cl-7c3170f8">30.9 (3.2)</span></p></td><td class="cl-7c345f5c"><p class="cl-7c343c98"><span class="cl-7c3170f8">29.4 (3.7)</span></p></td><td class="cl-7c345f54"><p class="cl-7c343c98"><span class="cl-7c3170f8">30.3 (3.5)</span></p></td><td class="cl-7c345f5c"><p class="cl-7c343c98"><span class="cl-7c3170f8">29.4 (3.7)</span></p></td><td class="cl-7c345f54"><p class="cl-7c343c98"><span class="cl-7c3170f8">30.5 (3.4)</span></p></td><td class="cl-7c345f5c"><p class="cl-7c343c98"><span class="cl-7c3170f8">29.3 (3.7)</span></p></td><td class="cl-7c345f54"><p class="cl-7c343c98"><span class="cl-7c3170f8">30.2 (3.4)</span></p></td><td class="cl-7c345f5c"><p class="cl-7c343c98"><span class="cl-7c3170f8">29.2 (3.7)</span></p></td><td class="cl-7c345f54"><p class="cl-7c343c98"><span class="cl-7c3170f8">30.5 (3.4)</span></p></td><td class="cl-7c345f5c"><p class="cl-7c343c98"><span class="cl-7c3170f8">28.5 (3.7)</span></p></td><td class="cl-7c345f54"><p class="cl-7c343c98"><span class="cl-7c3170f8">29.8 (3.6)</span></p></td><td class="cl-7c345f5c"><p class="cl-7c343c98"><span class="cl-7c3170f8">28.5 (3.7)</span></p></td><td class="cl-7c345f54"><p class="cl-7c343c98"><span class="cl-7c3170f8">29.7 (3.6)</span></p></td><td class="cl-7c345f5c"><p class="cl-7c343c98"><span class="cl-7c3170f8">28.5 (3.8)</span></p></td><td class="cl-7c345f54"><p class="cl-7c343c98"><span class="cl-7c3170f8">30.1 (3.5)</span></p></td><td class="cl-7c345f5c"><p class="cl-7c343c98"><span class="cl-7c3170f8">28.4 (3.8)</span></p></td><td class="cl-7c345f54"><p class="cl-7c343c98"><span class="cl-7c3170f8">29.9 (3.4)</span></p></td><td class="cl-7c345f5c"><p class="cl-7c343c98"><span class="cl-7c3170f8">30.5 (3.4)</span></p></td><td class="cl-7c345f54"><p class="cl-7c343c98"><span class="cl-7c3170f8">30.7 (3.3)</span></p></td><td class="cl-7c345f5c"><p class="cl-7c343c98"><span class="cl-7c3170f8">30.9 (3.2)</span></p></td><td class="cl-7c345f54"><p class="cl-7c343c98"><span class="cl-7c3170f8">31.0 (3.1)</span></p></td><td class="cl-7c345f5c"><p class="cl-7c343c98"><span class="cl-7c3170f8">30.6 (3.2)</span></p></td><td class="cl-7c345f54"><p class="cl-7c343c98"><span class="cl-7c3170f8">30.8 (3.3)</span></p></td><td class="cl-7c345f5c"><p class="cl-7c343c98"><span class="cl-7c3170f8">30.8 (3.1)</span></p></td><td class="cl-7c345f5d"><p class="cl-7c343c98"><span class="cl-7c3170f8">30.7 (3.5)</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-7c345f66"><p class="cl-7c343c98"><span class="cl-7c3170f8">N (NA)</span></p></td><td class="cl-7c345f53"><p class="cl-7c343c98"><span class="cl-7c3170f8">1619 (0)</span></p></td><td class="cl-7c345f66"><p class="cl-7c343c98"><span class="cl-7c3170f8">1522 (0)</span></p></td><td class="cl-7c345f53"><p class="cl-7c343c98"><span class="cl-7c3170f8">1812 (0)</span></p></td><td class="cl-7c345f66"><p class="cl-7c343c98"><span class="cl-7c3170f8">1411 (0)</span></p></td><td class="cl-7c345f53"><p class="cl-7c343c98"><span class="cl-7c3170f8">1866 (0)</span></p></td><td class="cl-7c345f66"><p class="cl-7c343c98"><span class="cl-7c3170f8">1401 (0)</span></p></td><td class="cl-7c345f53"><p class="cl-7c343c98"><span class="cl-7c3170f8">1730 (0)</span></p></td><td class="cl-7c345f66"><p class="cl-7c343c98"><span class="cl-7c3170f8">1599 (0)</span></p></td><td class="cl-7c345f53"><p class="cl-7c343c98"><span class="cl-7c3170f8">22 (0)</span></p></td><td class="cl-7c345f66"><p class="cl-7c343c98"><span class="cl-7c3170f8">25 (0)</span></p></td><td class="cl-7c345f53"><p class="cl-7c343c98"><span class="cl-7c3170f8">23 (0)</span></p></td><td class="cl-7c345f66"><p class="cl-7c343c98"><span class="cl-7c3170f8">16 (0)</span></p></td><td class="cl-7c345f53"><p class="cl-7c343c98"><span class="cl-7c3170f8">34 (0)</span></p></td><td class="cl-7c345f66"><p class="cl-7c343c98"><span class="cl-7c3170f8">20 (0)</span></p></td><td class="cl-7c345f53"><p class="cl-7c343c98"><span class="cl-7c3170f8">25 (0)</span></p></td><td class="cl-7c345f66"><p class="cl-7c343c98"><span class="cl-7c3170f8">31 (0)</span></p></td><td class="cl-7c345f53"><p class="cl-7c343c98"><span class="cl-7c3170f8">30506 (0)</span></p></td><td class="cl-7c345f66"><p class="cl-7c343c98"><span class="cl-7c3170f8">21132 (0)</span></p></td><td class="cl-7c345f53"><p class="cl-7c343c98"><span class="cl-7c3170f8">35651 (0)</span></p></td><td class="cl-7c345f66"><p class="cl-7c343c98"><span class="cl-7c3170f8">17564 (0)</span></p></td><td class="cl-7c345f53"><p class="cl-7c343c98"><span class="cl-7c3170f8">35926 (0)</span></p></td><td class="cl-7c345f66"><p class="cl-7c343c98"><span class="cl-7c3170f8">17539 (0)</span></p></td><td class="cl-7c345f53"><p class="cl-7c343c98"><span class="cl-7c3170f8">35261 (0)</span></p></td><td class="cl-7c345f66"><p class="cl-7c343c98"><span class="cl-7c3170f8">22454 (0)</span></p></td><td class="cl-7c345f53"><p class="cl-7c343c98"><span class="cl-7c3170f8">1252 (0)</span></p></td><td class="cl-7c345f66"><p class="cl-7c343c98"><span class="cl-7c3170f8">1466 (0)</span></p></td><td class="cl-7c345f53"><p class="cl-7c343c98"><span class="cl-7c3170f8">1451 (0)</span></p></td><td class="cl-7c345f66"><p class="cl-7c343c98"><span class="cl-7c3170f8">1257 (0)</span></p></td><td class="cl-7c345f53"><p class="cl-7c343c98"><span class="cl-7c3170f8">1480 (0)</span></p></td><td class="cl-7c345f66"><p class="cl-7c343c98"><span class="cl-7c3170f8">1326 (0)</span></p></td><td class="cl-7c345f53"><p class="cl-7c343c98"><span class="cl-7c3170f8">1379 (0)</span></p></td><td class="cl-7c345f66"><p class="cl-7c343c98"><span class="cl-7c3170f8">1506 (0)</span></p></td><td class="cl-7c345f53"><p class="cl-7c343c98"><span class="cl-7c3170f8">812 (0)</span></p></td><td class="cl-7c345f66"><p class="cl-7c343c98"><span class="cl-7c3170f8">1018 (0)</span></p></td><td class="cl-7c345f53"><p class="cl-7c343c98"><span class="cl-7c3170f8">940 (0)</span></p></td><td class="cl-7c345f66"><p class="cl-7c343c98"><span class="cl-7c3170f8">923 (0)</span></p></td><td class="cl-7c345f53"><p class="cl-7c343c98"><span class="cl-7c3170f8">894 (0)</span></p></td><td class="cl-7c345f66"><p class="cl-7c343c98"><span class="cl-7c3170f8">986 (0)</span></p></td><td class="cl-7c345f53"><p class="cl-7c343c98"><span class="cl-7c3170f8">876 (0)</span></p></td><td class="cl-7c345f66"><p class="cl-7c343c98"><span class="cl-7c3170f8">1135 (0)</span></p></td><td class="cl-7c345f53"><p class="cl-7c343c98"><span class="cl-7c3170f8">846 (0)</span></p></td><td class="cl-7c345f66"><p class="cl-7c343c98"><span class="cl-7c3170f8">726 (0)</span></p></td><td class="cl-7c345f53"><p class="cl-7c343c98"><span class="cl-7c3170f8">1110 (0)</span></p></td><td class="cl-7c345f66"><p class="cl-7c343c98"><span class="cl-7c3170f8">566 (0)</span></p></td><td class="cl-7c345f53"><p class="cl-7c343c98"><span class="cl-7c3170f8">1104 (0)</span></p></td><td class="cl-7c345f66"><p class="cl-7c343c98"><span class="cl-7c3170f8">609 (0)</span></p></td><td class="cl-7c345f53"><p class="cl-7c343c98"><span class="cl-7c3170f8">1123 (0)</span></p></td><td class="cl-7c345f67"><p class="cl-7c343c98"><span class="cl-7c3170f8">680 (0)</span></p></td></tr><tr style="overflow-wrap:break-word;"><td rowspan="4" class="cl-7c345f68"><p class="cl-7c343c98"><span class="cl-7c3170f8">work_weeks</span></p></td><td class="cl-7c345f70"><p class="cl-7c343c98"><span class="cl-7c3170f8">Min / Max</span></p></td><td class="cl-7c345f7a"><p class="cl-7c343c98"><span class="cl-7c3170f8">0 / 52.0</span></p></td><td class="cl-7c345f70"><p class="cl-7c343c98"><span class="cl-7c3170f8">0 / 52.0</span></p></td><td class="cl-7c345f7a"><p class="cl-7c343c98"><span class="cl-7c3170f8">0 / 52.0</span></p></td><td class="cl-7c345f70"><p class="cl-7c343c98"><span class="cl-7c3170f8">0 / 52.0</span></p></td><td class="cl-7c345f7a"><p class="cl-7c343c98"><span class="cl-7c3170f8">0 / 52.0</span></p></td><td class="cl-7c345f70"><p class="cl-7c343c98"><span class="cl-7c3170f8">0 / 52.0</span></p></td><td class="cl-7c345f7a"><p class="cl-7c343c98"><span class="cl-7c3170f8">0 / 52.0</span></p></td><td class="cl-7c345f70"><p class="cl-7c343c98"><span class="cl-7c3170f8">0 / 52.0</span></p></td><td class="cl-7c345f7a"><p class="cl-7c343c98"><span class="cl-7c3170f8">0 / 52.0</span></p></td><td class="cl-7c345f70"><p class="cl-7c343c98"><span class="cl-7c3170f8">0 / 52.0</span></p></td><td class="cl-7c345f7a"><p class="cl-7c343c98"><span class="cl-7c3170f8">0 / 52.0</span></p></td><td class="cl-7c345f70"><p class="cl-7c343c98"><span class="cl-7c3170f8">0 / 52.0</span></p></td><td class="cl-7c345f7a"><p class="cl-7c343c98"><span class="cl-7c3170f8">0 / 52.0</span></p></td><td class="cl-7c345f70"><p class="cl-7c343c98"><span class="cl-7c3170f8">0 / 52.0</span></p></td><td class="cl-7c345f7a"><p class="cl-7c343c98"><span class="cl-7c3170f8">0 / 52.0</span></p></td><td class="cl-7c345f70"><p class="cl-7c343c98"><span class="cl-7c3170f8">0 / 52.0</span></p></td><td class="cl-7c345f7a"><p class="cl-7c343c98"><span class="cl-7c3170f8">0 / 52.0</span></p></td><td class="cl-7c345f70"><p class="cl-7c343c98"><span class="cl-7c3170f8">0 / 52.0</span></p></td><td class="cl-7c345f7a"><p class="cl-7c343c98"><span class="cl-7c3170f8">0 / 52.0</span></p></td><td class="cl-7c345f70"><p class="cl-7c343c98"><span class="cl-7c3170f8">0 / 52.0</span></p></td><td class="cl-7c345f7a"><p class="cl-7c343c98"><span class="cl-7c3170f8">0 / 52.0</span></p></td><td class="cl-7c345f70"><p class="cl-7c343c98"><span class="cl-7c3170f8">0 / 52.0</span></p></td><td class="cl-7c345f7a"><p class="cl-7c343c98"><span class="cl-7c3170f8">0 / 52.0</span></p></td><td class="cl-7c345f70"><p class="cl-7c343c98"><span class="cl-7c3170f8">0 / 52.0</span></p></td><td class="cl-7c345f7a"><p class="cl-7c343c98"><span class="cl-7c3170f8">0 / 52.0</span></p></td><td class="cl-7c345f70"><p class="cl-7c343c98"><span class="cl-7c3170f8">0 / 52.0</span></p></td><td class="cl-7c345f7a"><p class="cl-7c343c98"><span class="cl-7c3170f8">0 / 52.0</span></p></td><td class="cl-7c345f70"><p class="cl-7c343c98"><span class="cl-7c3170f8">0 / 52.0</span></p></td><td class="cl-7c345f7a"><p class="cl-7c343c98"><span class="cl-7c3170f8">0 / 52.0</span></p></td><td class="cl-7c345f70"><p class="cl-7c343c98"><span class="cl-7c3170f8">0 / 52.0</span></p></td><td class="cl-7c345f7a"><p class="cl-7c343c98"><span class="cl-7c3170f8">0 / 52.0</span></p></td><td class="cl-7c345f70"><p class="cl-7c343c98"><span class="cl-7c3170f8">0 / 52.0</span></p></td><td class="cl-7c345f7a"><p class="cl-7c343c98"><span class="cl-7c3170f8">0 / 52.0</span></p></td><td class="cl-7c345f70"><p class="cl-7c343c98"><span class="cl-7c3170f8">0 / 52.0</span></p></td><td class="cl-7c345f7a"><p class="cl-7c343c98"><span class="cl-7c3170f8">0 / 52.0</span></p></td><td class="cl-7c345f70"><p class="cl-7c343c98"><span class="cl-7c3170f8">0 / 52.0</span></p></td><td class="cl-7c345f7a"><p class="cl-7c343c98"><span class="cl-7c3170f8">0 / 52.0</span></p></td><td class="cl-7c345f70"><p class="cl-7c343c98"><span class="cl-7c3170f8">0 / 52.0</span></p></td><td class="cl-7c345f7a"><p class="cl-7c343c98"><span class="cl-7c3170f8">0 / 52.0</span></p></td><td class="cl-7c345f70"><p class="cl-7c343c98"><span class="cl-7c3170f8">0 / 52.0</span></p></td><td class="cl-7c345f7a"><p class="cl-7c343c98"><span class="cl-7c3170f8">0 / 52.0</span></p></td><td class="cl-7c345f70"><p class="cl-7c343c98"><span class="cl-7c3170f8">0 / 52.0</span></p></td><td class="cl-7c345f7a"><p class="cl-7c343c98"><span class="cl-7c3170f8">0 / 52.0</span></p></td><td class="cl-7c345f70"><p class="cl-7c343c98"><span class="cl-7c3170f8">0 / 52.0</span></p></td><td class="cl-7c345f7a"><p class="cl-7c343c98"><span class="cl-7c3170f8">0 / 52.0</span></p></td><td class="cl-7c345f70"><p class="cl-7c343c98"><span class="cl-7c3170f8">0 / 52.0</span></p></td><td class="cl-7c345f7a"><p class="cl-7c343c98"><span class="cl-7c3170f8">0 / 52.0</span></p></td><td class="cl-7c345f7b"><p class="cl-7c343c98"><span class="cl-7c3170f8">0 / 52.0</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-7c345f54"><p class="cl-7c343c98"><span class="cl-7c3170f8">Med [IQR]</span></p></td><td class="cl-7c345f5c"><p class="cl-7c343c98"><span class="cl-7c3170f8">44.0 [7.5;52.0]</span></p></td><td class="cl-7c345f54"><p class="cl-7c343c98"><span class="cl-7c3170f8">25.0 [0;51.0]</span></p></td><td class="cl-7c345f5c"><p class="cl-7c343c98"><span class="cl-7c3170f8">40.0 [4.8;52.0]</span></p></td><td class="cl-7c345f54"><p class="cl-7c343c98"><span class="cl-7c3170f8">26.0 [0;52.0]</span></p></td><td class="cl-7c345f5c"><p class="cl-7c343c98"><span class="cl-7c3170f8">44.0 [10.0;52.0]</span></p></td><td class="cl-7c345f54"><p class="cl-7c343c98"><span class="cl-7c3170f8">24.0 [0;52.0]</span></p></td><td class="cl-7c345f5c"><p class="cl-7c343c98"><span class="cl-7c3170f8">41.0 [4.0;52.0]</span></p></td><td class="cl-7c345f54"><p class="cl-7c343c98"><span class="cl-7c3170f8">30.0 [0;52.0]</span></p></td><td class="cl-7c345f5c"><p class="cl-7c343c98"><span class="cl-7c3170f8">4.5 [0;47.5]</span></p></td><td class="cl-7c345f54"><p class="cl-7c343c98"><span class="cl-7c3170f8">0 [0;48.0]</span></p></td><td class="cl-7c345f5c"><p class="cl-7c343c98"><span class="cl-7c3170f8">12.0 [0;50.0]</span></p></td><td class="cl-7c345f54"><p class="cl-7c343c98"><span class="cl-7c3170f8">0 [0;36.8]</span></p></td><td class="cl-7c345f5c"><p class="cl-7c343c98"><span class="cl-7c3170f8">33.0 [0;52.0]</span></p></td><td class="cl-7c345f54"><p class="cl-7c343c98"><span class="cl-7c3170f8">0 [0;26.5]</span></p></td><td class="cl-7c345f5c"><p class="cl-7c343c98"><span class="cl-7c3170f8">8.0 [0;50.0]</span></p></td><td class="cl-7c345f54"><p class="cl-7c343c98"><span class="cl-7c3170f8">38.0 [7.0;52.0]</span></p></td><td class="cl-7c345f5c"><p class="cl-7c343c98"><span class="cl-7c3170f8">10.0 [0;48.0]</span></p></td><td class="cl-7c345f54"><p class="cl-7c343c98"><span class="cl-7c3170f8">0 [0;34.0]</span></p></td><td class="cl-7c345f5c"><p class="cl-7c343c98"><span class="cl-7c3170f8">10.0 [0;48.0]</span></p></td><td class="cl-7c345f54"><p class="cl-7c343c98"><span class="cl-7c3170f8">0 [0;32.0]</span></p></td><td class="cl-7c345f5c"><p class="cl-7c343c98"><span class="cl-7c3170f8">10.0 [0;48.0]</span></p></td><td class="cl-7c345f54"><p class="cl-7c343c98"><span class="cl-7c3170f8">0 [0;34.0]</span></p></td><td class="cl-7c345f5c"><p class="cl-7c343c98"><span class="cl-7c3170f8">10.0 [0;48.0]</span></p></td><td class="cl-7c345f54"><p class="cl-7c343c98"><span class="cl-7c3170f8">0 [0;30.0]</span></p></td><td class="cl-7c345f5c"><p class="cl-7c343c98"><span class="cl-7c3170f8">8.0 [0;48.0]</span></p></td><td class="cl-7c345f54"><p class="cl-7c343c98"><span class="cl-7c3170f8">0 [0;34.0]</span></p></td><td class="cl-7c345f5c"><p class="cl-7c343c98"><span class="cl-7c3170f8">8.0 [0;50.0]</span></p></td><td class="cl-7c345f54"><p class="cl-7c343c98"><span class="cl-7c3170f8">0 [0;34.0]</span></p></td><td class="cl-7c345f5c"><p class="cl-7c343c98"><span class="cl-7c3170f8">8.0 [0;48.0]</span></p></td><td class="cl-7c345f54"><p class="cl-7c343c98"><span class="cl-7c3170f8">0 [0;36.0]</span></p></td><td class="cl-7c345f5c"><p class="cl-7c343c98"><span class="cl-7c3170f8">12.0 [0;49.0]</span></p></td><td class="cl-7c345f54"><p class="cl-7c343c98"><span class="cl-7c3170f8">0 [0;32.0]</span></p></td><td class="cl-7c345f5c"><p class="cl-7c343c98"><span class="cl-7c3170f8">12.0 [0;50.0]</span></p></td><td class="cl-7c345f54"><p class="cl-7c343c98"><span class="cl-7c3170f8">0 [0;32.8]</span></p></td><td class="cl-7c345f5c"><p class="cl-7c343c98"><span class="cl-7c3170f8">16.0 [0;50.0]</span></p></td><td class="cl-7c345f54"><p class="cl-7c343c98"><span class="cl-7c3170f8">0 [0;28.0]</span></p></td><td class="cl-7c345f5c"><p class="cl-7c343c98"><span class="cl-7c3170f8">18.5 [0;50.0]</span></p></td><td class="cl-7c345f54"><p class="cl-7c343c98"><span class="cl-7c3170f8">0 [0;30.0]</span></p></td><td class="cl-7c345f5c"><p class="cl-7c343c98"><span class="cl-7c3170f8">16.0 [0;50.0]</span></p></td><td class="cl-7c345f54"><p class="cl-7c343c98"><span class="cl-7c3170f8">0 [0;32.0]</span></p></td><td class="cl-7c345f5c"><p class="cl-7c343c98"><span class="cl-7c3170f8">16.0 [0;51.8]</span></p></td><td class="cl-7c345f54"><p class="cl-7c343c98"><span class="cl-7c3170f8">0 [0;42.8]</span></p></td><td class="cl-7c345f5c"><p class="cl-7c343c98"><span class="cl-7c3170f8">19.5 [0;52.0]</span></p></td><td class="cl-7c345f54"><p class="cl-7c343c98"><span class="cl-7c3170f8">1.0 [0;44.0]</span></p></td><td class="cl-7c345f5c"><p class="cl-7c343c98"><span class="cl-7c3170f8">16.0 [0;52.0]</span></p></td><td class="cl-7c345f54"><p class="cl-7c343c98"><span class="cl-7c3170f8">0 [0;47.0]</span></p></td><td class="cl-7c345f5c"><p class="cl-7c343c98"><span class="cl-7c3170f8">20.0 [0;52.0]</span></p></td><td class="cl-7c345f5d"><p class="cl-7c343c98"><span class="cl-7c3170f8">0 [0;40.0]</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-7c345f54"><p class="cl-7c343c98"><span class="cl-7c3170f8">Mean (std)</span></p></td><td class="cl-7c345f5c"><p class="cl-7c343c98"><span class="cl-7c3170f8">32.8 (21.6)</span></p></td><td class="cl-7c345f54"><p class="cl-7c343c98"><span class="cl-7c3170f8">25.1 (22.7)</span></p></td><td class="cl-7c345f5c"><p class="cl-7c343c98"><span class="cl-7c3170f8">31.9 (21.8)</span></p></td><td class="cl-7c345f54"><p class="cl-7c343c98"><span class="cl-7c3170f8">25.3 (22.6)</span></p></td><td class="cl-7c345f5c"><p class="cl-7c343c98"><span class="cl-7c3170f8">32.9 (21.4)</span></p></td><td class="cl-7c345f54"><p class="cl-7c343c98"><span class="cl-7c3170f8">24.8 (22.6)</span></p></td><td class="cl-7c345f5c"><p class="cl-7c343c98"><span class="cl-7c3170f8">31.8 (21.8)</span></p></td><td class="cl-7c345f54"><p class="cl-7c343c98"><span class="cl-7c3170f8">26.3 (22.5)</span></p></td><td class="cl-7c345f5c"><p class="cl-7c343c98"><span class="cl-7c3170f8">19.3 (23.5)</span></p></td><td class="cl-7c345f54"><p class="cl-7c343c98"><span class="cl-7c3170f8">16.8 (23.4)</span></p></td><td class="cl-7c345f5c"><p class="cl-7c343c98"><span class="cl-7c3170f8">21.3 (23.3)</span></p></td><td class="cl-7c345f54"><p class="cl-7c343c98"><span class="cl-7c3170f8">16.2 (21.0)</span></p></td><td class="cl-7c345f5c"><p class="cl-7c343c98"><span class="cl-7c3170f8">27.8 (23.9)</span></p></td><td class="cl-7c345f54"><p class="cl-7c343c98"><span class="cl-7c3170f8">16.0 (20.8)</span></p></td><td class="cl-7c345f5c"><p class="cl-7c343c98"><span class="cl-7c3170f8">21.7 (23.9)</span></p></td><td class="cl-7c345f54"><p class="cl-7c343c98"><span class="cl-7c3170f8">31.8 (21.8)</span></p></td><td class="cl-7c345f5c"><p class="cl-7c343c98"><span class="cl-7c3170f8">20.4 (22.1)</span></p></td><td class="cl-7c345f54"><p class="cl-7c343c98"><span class="cl-7c3170f8">15.2 (20.5)</span></p></td><td class="cl-7c345f5c"><p class="cl-7c343c98"><span class="cl-7c3170f8">20.3 (22.1)</span></p></td><td class="cl-7c345f54"><p class="cl-7c343c98"><span class="cl-7c3170f8">14.9 (20.4)</span></p></td><td class="cl-7c345f5c"><p class="cl-7c343c98"><span class="cl-7c3170f8">20.5 (22.1)</span></p></td><td class="cl-7c345f54"><p class="cl-7c343c98"><span class="cl-7c3170f8">15.1 (20.5)</span></p></td><td class="cl-7c345f5c"><p class="cl-7c343c98"><span class="cl-7c3170f8">20.4 (22.1)</span></p></td><td class="cl-7c345f54"><p class="cl-7c343c98"><span class="cl-7c3170f8">14.6 (20.3)</span></p></td><td class="cl-7c345f5c"><p class="cl-7c343c98"><span class="cl-7c3170f8">20.3 (22.2)</span></p></td><td class="cl-7c345f54"><p class="cl-7c343c98"><span class="cl-7c3170f8">15.1 (20.6)</span></p></td><td class="cl-7c345f5c"><p class="cl-7c343c98"><span class="cl-7c3170f8">21.2 (22.8)</span></p></td><td class="cl-7c345f54"><p class="cl-7c343c98"><span class="cl-7c3170f8">15.3 (20.6)</span></p></td><td class="cl-7c345f5c"><p class="cl-7c343c98"><span class="cl-7c3170f8">20.3 (22.2)</span></p></td><td class="cl-7c345f54"><p class="cl-7c343c98"><span class="cl-7c3170f8">16.0 (20.8)</span></p></td><td class="cl-7c345f5c"><p class="cl-7c343c98"><span class="cl-7c3170f8">21.1 (22.4)</span></p></td><td class="cl-7c345f54"><p class="cl-7c343c98"><span class="cl-7c3170f8">15.1 (20.8)</span></p></td><td class="cl-7c345f5c"><p class="cl-7c343c98"><span class="cl-7c3170f8">21.7 (22.5)</span></p></td><td class="cl-7c345f54"><p class="cl-7c343c98"><span class="cl-7c3170f8">15.6 (20.3)</span></p></td><td class="cl-7c345f5c"><p class="cl-7c343c98"><span class="cl-7c3170f8">22.5 (22.5)</span></p></td><td class="cl-7c345f54"><p class="cl-7c343c98"><span class="cl-7c3170f8">14.3 (19.5)</span></p></td><td class="cl-7c345f5c"><p class="cl-7c343c98"><span class="cl-7c3170f8">23.0 (22.5)</span></p></td><td class="cl-7c345f54"><p class="cl-7c343c98"><span class="cl-7c3170f8">14.5 (19.9)</span></p></td><td class="cl-7c345f5c"><p class="cl-7c343c98"><span class="cl-7c3170f8">22.4 (22.5)</span></p></td><td class="cl-7c345f54"><p class="cl-7c343c98"><span class="cl-7c3170f8">14.9 (20.4)</span></p></td><td class="cl-7c345f5c"><p class="cl-7c343c98"><span class="cl-7c3170f8">23.2 (23.3)</span></p></td><td class="cl-7c345f54"><p class="cl-7c343c98"><span class="cl-7c3170f8">17.5 (21.6)</span></p></td><td class="cl-7c345f5c"><p class="cl-7c343c98"><span class="cl-7c3170f8">23.6 (23.0)</span></p></td><td class="cl-7c345f54"><p class="cl-7c343c98"><span class="cl-7c3170f8">18.4 (21.9)</span></p></td><td class="cl-7c345f5c"><p class="cl-7c343c98"><span class="cl-7c3170f8">22.9 (22.9)</span></p></td><td class="cl-7c345f54"><p class="cl-7c343c98"><span class="cl-7c3170f8">18.6 (22.3)</span></p></td><td class="cl-7c345f5c"><p class="cl-7c343c98"><span class="cl-7c3170f8">24.4 (23.3)</span></p></td><td class="cl-7c345f5d"><p class="cl-7c343c98"><span class="cl-7c3170f8">16.9 (21.7)</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-7c345f84"><p class="cl-7c343c98"><span class="cl-7c3170f8">N (NA)</span></p></td><td class="cl-7c345f7c"><p class="cl-7c343c98"><span class="cl-7c3170f8">1619 (0)</span></p></td><td class="cl-7c345f84"><p class="cl-7c343c98"><span class="cl-7c3170f8">1522 (0)</span></p></td><td class="cl-7c345f7c"><p class="cl-7c343c98"><span class="cl-7c3170f8">1812 (0)</span></p></td><td class="cl-7c345f84"><p class="cl-7c343c98"><span class="cl-7c3170f8">1411 (0)</span></p></td><td class="cl-7c345f7c"><p class="cl-7c343c98"><span class="cl-7c3170f8">1866 (0)</span></p></td><td class="cl-7c345f84"><p class="cl-7c343c98"><span class="cl-7c3170f8">1401 (0)</span></p></td><td class="cl-7c345f7c"><p class="cl-7c343c98"><span class="cl-7c3170f8">1730 (0)</span></p></td><td class="cl-7c345f84"><p class="cl-7c343c98"><span class="cl-7c3170f8">1599 (0)</span></p></td><td class="cl-7c345f7c"><p class="cl-7c343c98"><span class="cl-7c3170f8">22 (0)</span></p></td><td class="cl-7c345f84"><p class="cl-7c343c98"><span class="cl-7c3170f8">25 (0)</span></p></td><td class="cl-7c345f7c"><p class="cl-7c343c98"><span class="cl-7c3170f8">23 (0)</span></p></td><td class="cl-7c345f84"><p class="cl-7c343c98"><span class="cl-7c3170f8">16 (0)</span></p></td><td class="cl-7c345f7c"><p class="cl-7c343c98"><span class="cl-7c3170f8">34 (0)</span></p></td><td class="cl-7c345f84"><p class="cl-7c343c98"><span class="cl-7c3170f8">20 (0)</span></p></td><td class="cl-7c345f7c"><p class="cl-7c343c98"><span class="cl-7c3170f8">25 (0)</span></p></td><td class="cl-7c345f84"><p class="cl-7c343c98"><span class="cl-7c3170f8">31 (0)</span></p></td><td class="cl-7c345f7c"><p class="cl-7c343c98"><span class="cl-7c3170f8">30506 (0)</span></p></td><td class="cl-7c345f84"><p class="cl-7c343c98"><span class="cl-7c3170f8">21132 (0)</span></p></td><td class="cl-7c345f7c"><p class="cl-7c343c98"><span class="cl-7c3170f8">35651 (0)</span></p></td><td class="cl-7c345f84"><p class="cl-7c343c98"><span class="cl-7c3170f8">17564 (0)</span></p></td><td class="cl-7c345f7c"><p class="cl-7c343c98"><span class="cl-7c3170f8">35926 (0)</span></p></td><td class="cl-7c345f84"><p class="cl-7c343c98"><span class="cl-7c3170f8">17539 (0)</span></p></td><td class="cl-7c345f7c"><p class="cl-7c343c98"><span class="cl-7c3170f8">35261 (0)</span></p></td><td class="cl-7c345f84"><p class="cl-7c343c98"><span class="cl-7c3170f8">22454 (0)</span></p></td><td class="cl-7c345f7c"><p class="cl-7c343c98"><span class="cl-7c3170f8">1252 (0)</span></p></td><td class="cl-7c345f84"><p class="cl-7c343c98"><span class="cl-7c3170f8">1466 (0)</span></p></td><td class="cl-7c345f7c"><p class="cl-7c343c98"><span class="cl-7c3170f8">1451 (0)</span></p></td><td class="cl-7c345f84"><p class="cl-7c343c98"><span class="cl-7c3170f8">1257 (0)</span></p></td><td class="cl-7c345f7c"><p class="cl-7c343c98"><span class="cl-7c3170f8">1480 (0)</span></p></td><td class="cl-7c345f84"><p class="cl-7c343c98"><span class="cl-7c3170f8">1326 (0)</span></p></td><td class="cl-7c345f7c"><p class="cl-7c343c98"><span class="cl-7c3170f8">1379 (0)</span></p></td><td class="cl-7c345f84"><p class="cl-7c343c98"><span class="cl-7c3170f8">1506 (0)</span></p></td><td class="cl-7c345f7c"><p class="cl-7c343c98"><span class="cl-7c3170f8">812 (0)</span></p></td><td class="cl-7c345f84"><p class="cl-7c343c98"><span class="cl-7c3170f8">1018 (0)</span></p></td><td class="cl-7c345f7c"><p class="cl-7c343c98"><span class="cl-7c3170f8">940 (0)</span></p></td><td class="cl-7c345f84"><p class="cl-7c343c98"><span class="cl-7c3170f8">923 (0)</span></p></td><td class="cl-7c345f7c"><p class="cl-7c343c98"><span class="cl-7c3170f8">894 (0)</span></p></td><td class="cl-7c345f84"><p class="cl-7c343c98"><span class="cl-7c3170f8">986 (0)</span></p></td><td class="cl-7c345f7c"><p class="cl-7c343c98"><span class="cl-7c3170f8">876 (0)</span></p></td><td class="cl-7c345f84"><p class="cl-7c343c98"><span class="cl-7c3170f8">1135 (0)</span></p></td><td class="cl-7c345f7c"><p class="cl-7c343c98"><span class="cl-7c3170f8">846 (0)</span></p></td><td class="cl-7c345f84"><p class="cl-7c343c98"><span class="cl-7c3170f8">726 (0)</span></p></td><td class="cl-7c345f7c"><p class="cl-7c343c98"><span class="cl-7c3170f8">1110 (0)</span></p></td><td class="cl-7c345f84"><p class="cl-7c343c98"><span class="cl-7c3170f8">566 (0)</span></p></td><td class="cl-7c345f7c"><p class="cl-7c343c98"><span class="cl-7c3170f8">1104 (0)</span></p></td><td class="cl-7c345f84"><p class="cl-7c343c98"><span class="cl-7c3170f8">609 (0)</span></p></td><td class="cl-7c345f7c"><p class="cl-7c343c98"><span class="cl-7c3170f8">1123 (0)</span></p></td><td class="cl-7c345f85"><p class="cl-7c343c98"><span class="cl-7c3170f8">680 (0)</span></p></td></tr></tbody></table></div>
+</div>
+</div>
+<hr>
+</section>
+<section id="conclusion" class="level2">
+<h2 class="anchored" data-anchor-id="conclusion">Conclusion</h2>
+<p>Our exploratory analysis shows that fertility and mothers’ participation in the workforce are shaped by many overlapping factors such as age, ethnicity, family structure, and cultural norms.</p>
+<p>Most mothers in this data set stop at two children, but those who go on to have more tend to be slightly older and often show differences in their work participation.</p>
+<p>Ethnicity also matters: African American mothers work more weeks on average, while Hispanic and Caucasian mothers record fewer weeks, suggesting different economic pressures and support systems.</p>
+<p>The gender of existing children also plays a role, with families who already have two children of the same sex more likely to have a third, reflecting a desire for balance rather than a clear gender bias.</p>
+<p><em>Are cultural expectations or financial needs the main reason why mothers stop at two children or choose to have more?</em></p>
+<p><em>Till what extent are their work choices voluntary, and till what extent are they shaped by inequalities in childcare, wages, and access to healthcare?</em></p>
+<p>Most importantly: <em>What do these findings tell us about the everyday trade-offs mothers make between personal goals, cultural traditions, and the social systems around them?</em></p>
+
+
+</section>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+        const codeEl = trigger.previousElementSibling.cloneNode(true);
+        for (const childEl of codeEl.children) {
+          if (isCodeAnnotation(childEl)) {
+            childEl.remove();
+          }
+        }
+        return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+</div> <!-- /content -->
+
+
+
+
+</body></html>

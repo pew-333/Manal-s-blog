@@ -1,0 +1,344 @@
+---
+title: "A1 Part 2"
+format: html
+author: Ashmita Biswas, Ihina Purohit, Manal Nazer, Shashwat Gupta
+---
+
+# A1 Part 2: Fertility
+
+A data frame containing 254,654 (and 30,000, respectively) observations on 8 variables.
+
+In our exploratory data analysis (EDA), we have examined the data set through several steps: inspecting the data, making assumptions about the variables, validating those assumptions, summarizing the information, applying filters, visualizing the patterns, and finally, drawing meaningful insights.
+
+## Data Dictionary
+
+Qualitative Variables
+
+:   **children_gender:** Factor indicating genders of the children. Genders of the children are clubbed based on the order of birth. They could range from either male-male, male-female, female-male or female-female.
+
+    **havemorekids:** Factor indicating whether the mother has more than 2 children.
+
+    **ethnicity:** Factor indicating the ethnicity of the mother. The ethnicity can be either Caucasian, Hispanic, AFAM (African American), other (ethinicities other than the ones mentioned), AFAM+Hispanic, AFAM+Other or Hispanic+Other.
+
+Quantitative Variables
+
+:   **mother_age:** age of the mother in years.
+
+    **work_weeks:** number of weeks the mother worked in the year 1979.
+
+## Our questions before performing EDA: 
+
+-   *Does having more kids correlate with working fewer weeks?*
+
+-   *Does the gender of the 2 existing children play a role in having a third child?*
+
+-   *Do ethnicities differ in average weeks worked?*
+
+-   *At what ages is work participation highest/lowest?*
+
+-   *Are non-working mothers clustered by age, ethnicity, or whether or not they have more than 2 children?*
+
+-   *Do “mixed ethnicity” mothers show a different pattern?*
+
+------------------------------------------------------------------------
+
+#### Setting up libraries
+
+```{r}
+library(tidyverse)
+library(mosaic)
+library(skimr)
+library(tinytable)
+library(visdat)
+library(naniar)
+library(janitor)
+library(DT)
+library(ggformula)
+library(crosstable)
+theme_set(theme_minimal(base_family = "sans"))
+```
+
+#### Reading the data..
+
+```{r}
+Fertility <- readr::read_delim("https://vincentarelbundock.github.io/Rdatasets/csv/AER/Fertility.csv")
+```
+
+#### Let's take a glimpse()
+
+```{r}
+dplyr::glimpse(Fertility)
+```
+
+### Observations:
+
+-   Multiple entries of the work column contain "0" values.
+-   **Keep in mind:** The traditional American business hours are 9:00 a.m. to 5:00 p.m., Monday to Friday, representing a workweek of five eight-hour days comprising 40 hours in total. These are the origin of the phrase 9-to-5, used to describe a conventional and possibly tedious job.
+
+#### Exploring the work week data:
+
+```{r}
+Fertility %>% 
+  dplyr::count(work>0)
+```
+
+We found that nearly half of the parents in the data set did not work at all (0 weeks) during the year, and among those who did work, many were employed for fewer weeks, suggesting part-time work.
+
+One hypothesis could be that this data set has information of mothers who are traditional wives or those who are unemployed/ extender break from the labor force. We also are led to this hypothesis because this data set only contains information for one parent and fertility data traditionally feature mothers more often than fathers.
+
+#### Munging the data..
+
+We mutated the columns to make the data set more comprehensible. To improve readability, we consolidated the different ethnicities into a single column, ensuring that mixed ethnicities were also grouped together to give them a clearer representation.
+
+Additionally, we renamed certain factors to make the data easier to interpret.
+
+```{r}
+
+Fertility_2 <- Fertility %>%
+  mutate(ethnicity = case_when(
+    afam == "yes" & hispanic == "no" & other == "no" ~ "AFAM",
+    afam == "no" & hispanic == "yes" & other == "no" ~ "Hispanic",
+    afam == "no" & hispanic == "no" & other == "yes" ~ "Other",
+    afam == "no" & hispanic == "no" & other == "no" ~ "Caucasian",
+     afam == "yes" & hispanic == "yes" & other == "no" ~ "AFAM+Hispanic",
+     afam == "yes" & hispanic == "no" & other == "yes" ~ "AFAM+Other",
+     afam == "no" & hispanic == "yes" & other == "yes" ~ "Hispanic+Other"
+  )) %>% 
+mutate(children_gender = case_when(
+  gender1== "male" & gender2== "male" ~ "male-male",
+  gender1== "male" & gender2== "female"~ "male-female",
+  gender1== "female" & gender2== "male" ~ "female-male",
+  gender1== "female" & gender2== "female" ~ "female-female"
+)) %>% 
+ 
+ select(-c(gender1, gender2, afam, hispanic, other)) %>% 
+  mutate( morekids = as.factor(morekids),
+          ethnicity = as.factor(ethnicity),
+          children_gender = as.factor(children_gender)) %>% 
+  dplyr::relocate(ethnicity, children_gender, work, morekids, .after=age) %>% 
+rename("mother_age" = age,
+       "work_weeks" = work,
+       "havemorekids"= morekids)
+
+
+Fertility_2
+```
+
+### What does all this data mean??
+
+Counting the ethnicities in this data set as well as the count of 2 or more children across ethnicities:
+
+```{r}
+Fertility_2 %>% 
+  dplyr::count(ethnicity) 
+
+
+Fertility_2 %>% 
+   dplyr::count(ethnicity, havemorekids) 
+  
+```
+
+The data set leans towards representing more Caucasian women compared to other ethnic group.
+
+The findings of this exploratory data analysis are to be taken with this in mind.
+
+Across ethnicities, most of the women don't have more than 2 kids.
+
+One hypothesis could be that few of these could also comprise of single parents households or co-parent households; maybe more nuclear families than joint families. Access to healthcare/ income/societal/personal factors could also play a role on them having 2 children and not more.
+
+#### Visualizing the data..
+
+```{r}
+
+Fertility_2 %>%
+  gf_props(~ethnicity,
+    fill = ~havemorekids,
+    position = "fill"
+  ) %>%
+  gf_labs(
+    title = "Distribution of Mothers Having 2 or More Children",
+    subtitle = "Data across different ethnicities, by proportion"
+  ) %>%
+  gf_refine(scale_fill_brewer(palette = "Set1"))
+```
+
+"Caucasian" and "Other" ethnicities seem to comprise of the most number of mothers with only 2 children, compared to "Hispanic + Other", which has most number of mothers with more than 2 children.
+
+*How does sex education/ access to healthcare play a role here, across ethnicities?*
+
+*Does the gender of the 2 existing children play a role in having a third child?*
+
+#### Let's find out:
+
+```{r}
+Fertility_2 %>% 
+  gf_props(~ethnicity,
+    fill = ~children_gender,
+    position = "fill"
+  ) %>%
+  gf_facet_grid(~havemorekids) %>% 
+  gf_labs(
+    title = "Distribution of Gender Combinations of Children Across Ethnicities",
+    subtitle = "Data showing presence of 2 or more children, by proportion"
+  ) %>%
+  gf_refine(scale_fill_brewer(palette = "Set1"))
+```
+
+Let's plot a better graph, one with position=dodge to understand the child preferences better.
+
+```{r}
+Fertility_2 %>%
+  gf_bar(~ethnicity,
+    fill = ~children_gender,
+    position = "dodge"
+  ) %>%
+  gf_facet_grid(~havemorekids) %>% 
+  gf_labs(title = "Distribution of Gender Combinations of Children Across Ethnicities",
+          subtitle="Data showing presence of 2 or more children") %>%
+  gf_refine(scale_fill_brewer(palette = "Set1"))
+```
+
+Now let's make a graph, faceting it by ethnicities, apart from caucasians, to understand the other ethnicities better:
+
+```{r}
+Fertility_2 %>%
+  filter(ethnicity!="Caucasian") %>% 
+  gf_bar(~havemorekids,
+    fill = ~children_gender,
+    position = "dodge"
+  ) %>%
+  gf_facet_grid(~ethnicity) %>% 
+  gf_labs(title = "Distribution of Gender Combinations of Children Across Ethnicities",
+          subtitle="Data showing presence of 2 or more children") %>%
+  gf_refine(scale_fill_brewer(palette = "Set1"))
+
+```
+
+Awesome!
+
+The data suggests that the decision to have a third child is not simply based on whether the parents already have a daughter/son, but rather on whether their existing children are of the same gender(male-male/female-female). Parents with two children of the same gender are more likely to go on to have a third child, possibly driven by the hope of “balancing” genders within the family. And also families who already have both a male and a female child (a “balanced” gender ratio) are less likely to have more children.
+
+This pattern negates our assumption of there being a subtle form of gender bias/sexism, where the female-female combination is more strongly associated with trying for another child, reflecting a cultural preference for sons.
+
+Our assumption however, is still seen in the "Other" ethnicity, suggesting that our hypothesis is not merely an assumption.
+
+#### Lets see the effect of the amount of weeks worked on the presence of there being 2 or more children:
+
+```{r}
+Fertility_2 %>%
+  gf_histogram(~work_weeks | havemorekids ) %>% 
+  gf_labs(title= "Distribution of Work Weeks Among Mothers",
+          subtitle= "Who has more children?")
+```
+
+Mothers who are not employed (0 weeks of work in a year) make up the majority in both the histograms.
+
+Both histograms also show a spike among mothers who work full-time. This could suggest that these mothers need to support their families financially, possibly as single parents - or that they are ambitious and committed to maintaining their careers while raising children.
+
+One possible interpretation is that mothers with more children may need to work more in order to provide for them. However, the data also shows that many working mothers tend to stop having children at two children, as do mothers who are not working at all.
+
+This leads us to questioning:
+
+*Why do some mothers choose not to have more than two children regardless of their work status?*
+
+*Do mothers stop working after having more than two children because childcare demands leave them with little time for employment, or are they unable to continue working due to the increased motherly responsibilities?*
+
+*Do factors like age, ethnicity also play a role in such decisions?*
+
+#### Let's find out:
+
+The summary below shows us the distribution of ages of mothers with 2 or more children.
+
+```{r}
+Fertility_2 %>% 
+  dplyr::summarise(mean_mother_age= mean(mother_age, na.rm=T),
+    sd_mother_age = sd(mother_age, na.rm=T),
+    min_mother_age = min(mother_age, na.rm=T),
+    max_mother_age = max(mother_age, na.rm=T))
+```
+
+#### Now let's look at this through ethnicities:
+
+```{r}
+Fertility_2 %>% 
+
+  group_by(ethnicity) %>% 
+   dplyr::summarise(mean_mother_age= mean(mother_age, na.rm=T),
+    sd_mother_age = sd(mother_age, na.rm=T),
+    min_mother_age = min(mother_age, na.rm=T),
+    max_mother_age = max(mother_age, na.rm=T))
+```
+
+#### Summarising work weeks:
+
+```{r}
+Fertility_2 %>% 
+  group_by(ethnicity) %>% 
+ dplyr::summarise(
+    mean_work_weeks = mean(work_weeks, na.rm=T),
+    sd_work_weeks = sd(work_weeks, na.rm=T),
+    min_work_weeks = min(work_weeks, na.rm=T),
+    max_work_weeks = max(work_weeks, na.rm=T),
+    
+  )
+```
+
+African American (AFAM) women tend to work more on average (around 29 weeks a year) compared to other ethnicities. One of the factors contributing to this could be the greater economic or social pressures that their community has to face that make continuous participation in the labor market less of a choice and more of a necessity.
+
+Hispanic and Caucasian women record the lowest mean number of work weeks (18.06 and 18.4, respectively).
+
+Similarly, other hypotheses could be:
+
+-   A possible explanation is that Hispanic women may benefit from joint-family like support systems, allowing them to focus less on paid work while still managing household responsibilities.
+
+-   Caucasian women, on the other hand, may be less likely to head single-parent households, and also, the fact that Caucasian men tend to earn higher wages compared to other ethnic groups, there may be less financial necessity for them to engage in consistent employment.
+
+    *Do cultural norms and socioeconomic positioning shape women’s participation in the labor force?*
+
+#### Let us try plotting boxplots in order to see how that looks across ages:
+
+```{r}
+Fertility_2 %>% 
+  gf_boxplot(ethnicity~mother_age, orientation = "y", color =~ havemorekids) %>% 
+  gf_labs(title="Ages of mothers who have 2 or more kids across ethnicities",
+          subtitle="Distributed on the basis of having 2 or more children")
+```
+
+For most ethnicities, the age distribution for mothers with more kids skews slightly higher than those without.
+
+One finding is that different ethnic groups have children at different average ages:
+
+-   Mothers in the Hispanic+Other category have children at more diverse ages, some quite young, some much older.
+
+-   In contrast, groups like Other have narrower boxes, meaning most mothers fall within a smaller, tighter age range.
+
+-   Hispanic and Hispanic + Other mothers seem to have slightly younger distributions compared to Caucasian or AFAM mothers.
+
+## Crosstable Overview
+
+```{r}
+
+crosstable(mother_age + work_weeks ~ havemorekids+children_gender + ethnicity,
+  data = Fertility_2
+) %>%
+  crosstable::as_flextable()
+ 
+```
+
+------------------------------------------------------------------------
+
+## Conclusion
+
+Our exploratory analysis shows that fertility and mothers' participation in the workforce are shaped by many overlapping factors such as age, ethnicity, family structure, and cultural norms.
+
+Most mothers in this data set stop at two children, but those who go on to have more tend to be slightly older and often show differences in their work participation.
+
+Ethnicity also matters: African American mothers work more weeks on average, while Hispanic and Caucasian mothers record fewer weeks, suggesting different economic pressures and support systems.
+
+The gender of existing children also plays a role, with families who already have two children of the same sex more likely to have a third, reflecting a desire for balance rather than a clear gender bias.
+
+*Are cultural expectations or financial needs the main reason why mothers stop at two children or choose to have more?*
+
+*Till what extent are their work choices voluntary, and till what extent are they shaped by inequalities in childcare, wages, and access to healthcare?*
+
+Most importantly: *What do these findings tell us about the everyday trade-offs mothers make between personal goals, cultural traditions, and the social systems around them?*
