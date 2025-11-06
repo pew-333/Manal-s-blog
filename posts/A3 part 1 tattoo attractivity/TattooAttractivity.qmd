@@ -1,0 +1,195 @@
+---
+title: "TattooAttractivity"
+format: html
+---
+
+# **Tattoo Attractivity**
+
+This data set investigates the perception of Srishti students without tattoos on whether tattoos enhance a person’s overall attractiveness.
+
+------------------------------------------------------------------------
+
+## Data Dictionary
+
+Qualitative Variables
+
+:   -   **Name:** Factor indicating name of the participant.
+
+    -   **gender:** Factor indicating sex. Gender refers to either Male or Female.
+
+    -   **tattoo_attractive:** Factor indicating whether the participant finds tattoos attractive.
+
+## Our questions/ assumptions before performing EDA:
+
+-   Does gender influence whether someone finds tattoos attractive?
+-   Most people might find tattoos attractive, given the social and cultural factors at play in Srishti.
+
+------------------------------------------------------------------------
+
+#### Setting up the libraries
+
+```{r}
+library(tidyverse)
+library(mosaic) # Our go-to package
+library(ggformula)
+library(infer) # An alternative package for inference using tidy data
+library(broom) # Clean test results in tibble form
+library(skimr) # data inspection
+library(tinytable) # Pretty Tables
+library(kableExtra) # Pretty Tables
+library(ggprism) # Prism-like ggplot themes
+library(resampledata3) # Datasets from Chihara and Hesterberg's book
+library(openintro) # datasets
+library(infer)
+library(vcd)
+library(resampledata)
+library(openintro)
+library(readr)
+library(naniar)
+library(janitor)
+library(DT)
+library(crosstable)
+library(geofacet)
+library(ggplot2)
+```
+
+#### Reading The Data
+
+```{r}
+Tattoo <- readr::read_delim("~/Downloads/Datasets for A3/tattooAttraction.csv") %>% 
+  janitor::clean_names(case = "snake") %>% 
+  dplyr::glimpse()
+
+Tattoo
+```
+
+#### Inspecting the Data
+
+```{r}
+ visdat::vis_dat(Tattoo) + ggtitle(label= "Tattoo Attractivity: Missing Data", subtitle = "Showing Variable Types")
+  visdat::vis_miss(Tattoo)
+
+```
+
+All data present. Good job, team :D
+
+#### Munging the Data
+
+```{r}
+Tattoo1 <- Tattoo %>% 
+ dplyr::select(tattoo_attractive, gender) %>%
+  tidyr::drop_na(., c(tattoo_attractive, gender)) %>%
+  # Re-level the factors
+  mutate(
+    tattoo_attractive = factor(tattoo_attractive,
+      levels = c("Yes", "No"),
+      labels = c("Yes", "No")
+    ),
+    gender = factor(gender,
+      levels = c("F", "M"),
+      labels = c("F", "M")
+    )
+  )
+glimpse(Tattoo1)
+```
+
+#### Let's get a count of our data
+
+```{r}
+Tattoo1 %>% 
+  count(gender, tattoo_attractive)
+```
+
+A perfect split of preferences? Wonder how statistically possible this is. For now let us make some graphs.
+
+```{r}
+Tattoo1 %>% 
+gf_bar(~tattoo_attractive, fill = ~gender,
+       position = "dodge") %>% 
+gf_labs(x="gender",
+        y="count",
+        title="Distribution of Tattoo Attractiveness Responses Across Genders",
+         subtitle = "Responses from students who do not have tattoos themselves")
+```
+
+From the chart, it appears that both male and female Srishti students show similar patterns in their responses. This suggests that gender does not play a major role in perceptions of tattoo attractiveness: both male and female students tend to view tattoos positively to a similar extent.
+
+```{r}
+Tattootable <- vcd::structable(gender ~ tattoo_attractive, data= Tattoo1)
+Tattootable
+```
+
+```{r}
+vcd::mosaic(gender ~ tattoo_attractive, data = Tattoo1, 
+            direction = "v", gp = shading_max, legend = FALSE)
+vcd::mosaic(gender ~ tattoo_attractive, data = Tattoo1, 
+            type = "expected", direction = "v", gp = shading_max, 
+            legend = FALSE)
+vcd::assoc(gender ~ tattoo_attractive, 
+           data = Tattoo1, 
+           gp = shading_max, 
+           legend = FALSE) 
+```
+
+Although this mosaic chart doesn't say much, it is pretty interesting to see how there is no deviation across the observed chart or the assoc chart. Let us look at some other graphs instead.
+
+```{r}
+Tattoo1 %>%
+  gf_props(~tattoo_attractive,
+    fill = ~gender,
+    position = "fill"
+  ) %>%
+  gf_labs(
+    x = "Do they find Tattoos Attractive?",
+    title = "Proportion of Tattoo Attractiveness Responses Across Genders",
+        subtitle = "Filled bar graph"
+  )
+```
+
+This further validates our hypothesis above.
+
+------------------------------------------------------------------------
+
+### Inference
+
+```{r}
+Tattoo1 %>%
+  summarize(prop = prop(tattoo_attractive, success = "Yes"), n = n())
+```
+
+Out of 40 responses, 75% of the sample set found Tattoos attractive. Let us quickly visualise that:
+
+```{r}
+Tattoo1 %>%
+  gf_bar(~tattoo_attractive) %>%
+  gf_labs(
+    x = "Do they find tattoos attractive?",
+    title = "Student Opinions on Tattoo Attractiveness",
+    subtitle = "Responses from students who do not have tattoos themselves"
+  )
+```
+
+#### doing a binom test
+
+```{r}
+mosaic::binom.test(~tattoo_attractive, data = Tattoo1, success = "Yes")
+```
+
+Awesome! let us turn it into a readable table:
+
+```{r}
+mosaic::binom.test(~tattoo_attractive, data = Tattoo1, success = "Yes") %>%
+  broom::tidy()
+```
+
+Among 40 Srishti students (without tattoos), 75% find tattoos attractive. The p.value is shown to be 0.002, which is lesser than 0.05; This is statistically significant! Confidence Intervals range from 58.8% and 87.3%, and does not include 50% in them. We can confidently conclude that a majority of students find tattoos attractive.
+
+------------------------------------------------------------------------
+
+#### Conclusion:
+
+The data shows that gender doesn’t really make a difference in how Srishti students view tattoos: both male and female students seem to find them equally attractive.
+
+About 75% of students without tattoos said they find tattoos attractive, and the binomial test confirms this is statistically significant (p = 0.002). Since the confidence interval (58.8%–87.3%) doesn’t include 50%, we can confidently say that most students think tattoos make a person more attractive.
+
+Overall, the results suggest that tattoos are seen positively at Srishti, and the perception isn’t influenced much by gender.

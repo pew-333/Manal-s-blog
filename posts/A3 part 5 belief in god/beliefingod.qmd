@@ -1,0 +1,207 @@
+---
+title: "beliefingod"
+format: html
+---
+
+# **"Do you believe in God?"**
+
+This data set examines religious beliefs among Srishti students, specifically whether they believe in God.
+
+## Data Dictionary
+
+Qualitative Variables
+
+:   -   **Name:** Factor indicating name of the participant.
+
+    -   **gender:** Factor indicating sex. Gender refers to either Male or Female.
+
+    -   **believe_in_god** Factor indicating whether the participant believes in God or not.
+
+## Our assumptions before performing EDA:
+
+-   We expect that at least 40% of participants will not believe in God, given the creative and liberal environment typical of design colleges.
+-   We anticipate that gender will not be associated with religious belief; male and female students will have similar rates of belief and non-belief.
+
+------------------------------------------------------------------------
+
+#### Setting up the libraries
+
+```{r}
+library(tidyverse)
+library(mosaic) # Our go-to package
+library(ggformula)
+library(infer) # An alternative package for inference using tidy data
+library(broom) # Clean test results in tibble form
+library(skimr) # data inspection
+library(tinytable) # Pretty Tables
+library(kableExtra) # Pretty Tables
+library(ggprism) # Prism-like ggplot themes
+library(resampledata3) # Datasets from Chihara and Hesterberg's book
+library(openintro) # datasets
+library(infer)
+library(vcd)
+library(resampledata)
+library(openintro)
+library(readr)
+library(naniar)
+library(janitor)
+library(DT)
+library(crosstable)
+library(geofacet)
+library(ggplot2)
+```
+
+#### Reading the Data
+
+```{r}
+Godbelief <- readr::read_delim("~/Downloads/Datasets for A3/believeingod.csv") %>% 
+  janitor::clean_names(case = "snake") %>% 
+  dplyr::glimpse()
+
+Godbelief
+```
+
+#### Inspecting the Data
+
+```{r}
+ visdat::vis_dat(Godbelief) + ggtitle(label= "Do they believe in God: Missing Data", subtitle = "Showing Variable Types")
+  visdat::vis_miss(Godbelief)
+
+```
+
+A bunch of missing data. Let's check whether the data we're about to clean contains some sort of gender bias.
+
+```{r}
+Godbelief %>% 
+  filter(is.na(believe_in_god)) %>%
+  count(gender)
+```
+
+The missing data is equally distributed across genders. That's cool. Let's examine the distribution of people who answered by gender.
+
+```{r}
+Godbelief %>% 
+  drop_na() %>% 
+  count(gender)
+```
+
+#### Munging the Data
+
+```{r}
+Godbelief1 <- Godbelief %>%
+
+  mutate(
+    name = as.factor(name),
+    gender = factor(gender,
+      levels = c("Female", "Male"),
+      labels = c("Female", "Male")
+    ),
+    believe_in_god = factor(believe_in_god,
+      levels = c("Yes", "No"),
+      labels = c("Yes", "No") )
+  ) %>% 
+ 
+tidyr::drop_na()
+Godbelief1
+```
+
+```{r}
+Godbelief1 %>% 
+gf_bar(~gender, fill = ~believe_in_god,
+       position = "dodge") %>% 
+gf_labs(x="gender",
+        y="count",
+        title="Distribution of Genders by their Religious Beliefs in Srishti",
+        subtitle="How many in Srishti believe in God?")
+```
+
+A larger proportion of females in Srishti believe in God. Out of 23 females, around 17–18 responded “Yes,” while about 5 said “No.” Among males, fewer believe in God compared to those who don’t. **Males are more skeptical or less religious on average compared to females.**
+
+```{r}
+God_table <- vcd::structable(gender ~ believe_in_god, data= Godbelief1)
+God_table
+```
+
+```{r}
+vcd::mosaic(gender ~ believe_in_god, data = Godbelief1, 
+            direction = "v", gp = shading_max, legend = FALSE)
+vcd::mosaic(gender ~ believe_in_god, data = Godbelief1, 
+            type = "expected", direction = "v", gp = shading_max, 
+            legend = FALSE)
+vcd::assoc(gender ~ believe_in_god, 
+           data = Godbelief1, 
+           gp = shading_max, 
+           legend = FALSE) 
+```
+
+These mosaic plots reinforce that females are more religious or spiritually inclined than males in this context, while males are comparatively less likely to believe in God.
+
+Lets check for the overall graph of those who believe vs don't believe in God:
+
+```{r}
+Godbelief1 %>% 
+gf_bar(~believe_in_god) %>% 
+gf_labs(title="How many in Srishti believe in God?")
+```
+
+A good chunk don't believe in God here! Our earlier assumption may be right.
+
+```{r}
+Godbelief%>%
+  drop_na() %>%
+  count(believe_in_god)
+```
+
+Out of this, we can infer that 26 out of 41 students (63.4%) believe in God. That would mean only 36.6% of students don't believe in God. Hopefully somewhat of a negligible difference? What would the proportion of the same be?
+
+```{r}
+Godbelief %>%
+  drop_na() %>%
+  summarize(prop = prop(believe_in_god, success = "Yes"), n = n())
+```
+
+```{r}
+
+Godbelief %>%
+  drop_na() %>%
+  gf_props(~believe_in_god,
+    fill = ~gender,
+    position = "fill"
+  ) %>%
+  gf_labs(
+    x = "Do they believe in god?",
+    title = "Proportion of Students who believe in God",
+        subtitle = "Filled bar graph"
+  )
+```
+
+```{r}
+Godbelief %>%
+  drop_na() %>%
+  gf_props(~believe_in_god,
+    fill = ~gender,
+    position = "dodge"
+  ) %>%
+  gf_labs(
+    x = "Do they believe in god?",
+    title = "Proportion of Students Who Believe In God",
+    subtitle = "Dodged bar graph"
+  )
+```
+
+Is belief in God the majority opinion at Srishti, or is it roughly evenly split?
+
+```{r}
+mosaic::binom.test(~believe_in_god, data = Godbelief, success = "Yes")
+```
+
+```{r}
+mosaic::binom.test(~believe_in_god, data = Godbelief, success = "Yes") %>%
+  broom::tidy()
+```
+
+From the estimate, we got to know that 63% of students believe in God. The number of successes, which is the statistic, show that 26 people said "yes" to believing in God. Our confidence intervals for this data lies in between 46.9% and 77.8%. The p-value here however, is 0.11, which is higher than 0.05. So this is NOT statistically significant.
+
+### Conclusion:
+
+Even though more students believe than don't, this difference could be due to chance. Hence, we cannot conclude that belief is more prevalent than non-belief in Srishti.

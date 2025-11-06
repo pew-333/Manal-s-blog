@@ -10,7 +10,7 @@ For this assignment, we explored the dataset *“1000 Cranes – Southern Kazak
 
 Demoiselle cranes often breed in *Ukraine, Russia, Kazakhstan, Mongolia, China and Turkey*, migrating through *Uzbekistan, Kyrgyzstan, Tajikistan, Afghanistan, Pakistan, Iran, Iraq, Cyprus, Saudi Arabia, Tibet (China), Turkmenistan, Azerbaijan* and *Egypt* and winter in *India, Pakistan, Sudan, Chad, or other Sahel/Northeast Africa.*
 
-The **breeding grounds** of the cranes mapped in this dataset are *Kazhakhstan*and*China*. **Migration/Stop over** countries include *Uzbekistan, Kyrgyzstan, Tajikistan* and *Afghanistan*. **Wintering Grounds** include Pakistan and India- notably Rajasthan and Gujarat.
+The **breeding grounds** of the cranes mapped in this dataset are *Kazhakhstan* and *China*. **Migration/Stop over** countries include *Uzbekistan, Kyrgyzstan, Tajikistan* and *Afghanistan*. **Wintering Grounds** include Pakistan and India- notably Rajasthan and Gujarat.
 
 #### Setting up the libraries:
 

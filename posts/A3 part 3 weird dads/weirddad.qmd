@@ -1,0 +1,262 @@
+---
+title: "weirddad"
+format: html
+---
+
+# **"Is your Dad Weird?"**
+
+This data set explores a playful social observation among students from MIT and Srishti: examining whether they perceive their fathers as "weird." Does being from a tech institute or a design institute influence one's perceptions of their parents?
+
+## Data Dictionary
+
+Qualitative Variables
+
+:   -   **Name:** Factor indicating name of the participant.
+
+    -   **gender:** Factor indicating sex. Gender refers to Male, Female or Non-Binary.
+
+    -   **is_dad_weird:** Factor indicating whether the participant thinks their dad is weird or not.
+
+    -   **college:** Factor indicating the institute the participant is currently studying in.
+
+## Our assumptions before performing EDA:
+
+-   MIT folks might be less likely to think their dads are weird compared to Srishti folks.
+-   Females might be more likelier to think their dads are weird compared to males.
+
+------------------------------------------------------------------------
+
+#### Setting up the libraries
+
+```{r}
+library(tidyverse)
+library(mosaic) # Our go-to package
+library(ggformula)
+library(infer) # An alternative package for inference using tidy data
+library(broom) # Clean test results in tibble form
+library(skimr) # data inspection
+library(tinytable) # Pretty Tables
+library(kableExtra) # Pretty Tables
+library(ggprism) # Prism-like ggplot themes
+library(resampledata3) # Datasets from Chihara and Hesterberg's book
+library(openintro) # datasets
+library(infer)
+library(vcd)
+library(resampledata)
+library(openintro)
+library(readr)
+library(naniar)
+library(janitor)
+library(DT)
+library(crosstable)
+library(geofacet)
+library(ggplot2)
+```
+
+#### Reading the Data
+
+```{r}
+Weirddad <- readr::read_delim("~/Downloads/Datasets for A3/weirddads.csv") %>% 
+  janitor::clean_names(case = "snake") %>% 
+  dplyr::glimpse()
+
+Weirddad
+```
+
+#### Inspecting the Data
+
+```{r}
+ visdat::vis_dat(Weirddad) + ggtitle(label= "Is your Dad Weird?: Missing Data", subtitle = "Showing Variable Types")
+  visdat::vis_miss(Weirddad)
+
+```
+
+Only 0.4% of data is missing, can do away with the data
+
+#### Munging the Data:
+
+```{r}
+weirddad_mod <- Weirddad %>% 
+  mutate(across(where(is.character), as.factor)) %>% 
+  tidyr::drop_na()
+weirddad_mod
+```
+
+```{r}
+weirddad_mod1 <- weirddad_mod %>% 
+  dplyr::select(college, is_dad_weird, gender) %>%
+  tidyr::drop_na(., c(college, is_dad_weird)) %>%
+  # Re-level the factors
+  mutate(
+   college = factor(college,
+      levels = c("SMI", "MIT"),
+      labels = c("SMI", "MIT"),
+    ),
+    is_dad_weird = factor(is_dad_weird,
+      levels = c("Yes", "No"),
+      labels = c("Yes", "No")
+    ),
+   gender = factor(gender,
+      levels = c("F", "M"),
+      labels = c("F", "M"))
+  )
+glimpse(weirddad_mod1)
+
+```
+
+```{r}
+weirddad_mod %>%
+  drop_na() %>%
+  gf_bar(~is_dad_weird,
+    fill = ~gender,
+    position = "dodge"
+  ) %>%
+  gf_facet_grid(~college)
+```
+
+SMI students are comparatively more split in their opinions: there’s a relatively balanced number of “Yes” and “No” responses. MIT students, on the other hand, overwhelmingly answered “No”: most don’t think their dad is weird. Across both colleges, the majority of students do not think their dad is weird. The trend is mainly driven by the college factor, not gender.
+
+#### What are the counts of Srishti v.s MIT students who think their dads are weird?
+
+```{r}
+weirddad_mod1 %>% 
+  dplyr::count(college, is_dad_weird)
+```
+
+-   SMI students: 12/31 = 38.7% said "Yes" (dad is weird)
+
+-   MIT students: 5/33 = 15.2% said "Yes" (dad is weird)
+
+So far, we can conclude that SMI students are more than twice as likely to report having a weird dad compared to MIT students. Let's create a contingency table with just female and male (because we have insufficient data for NB).
+
+```{r}
+contingency_table <- vcd::structable(gender ~ is_dad_weird, data= weirddad_mod1)
+contingency_table
+```
+
+```{r}
+vcd::mosaic(gender ~ is_dad_weird, data = weirddad_mod1, 
+            direction = "v", gp = shading_max, legend = TRUE)
+vcd::mosaic(gender ~ is_dad_weird, data = weirddad_mod1, 
+            type = "expected", direction = "v", gp = shading_max, 
+            legend = TRUE)
+vcd::assoc(gender ~ is_dad_weird, 
+           data = weirddad_mod1, 
+           gp = shading_max, 
+           legend = TRUE) 
+
+vcd::mosaic(college ~ is_dad_weird, data = weirddad_mod1, 
+            direction = "v", gp = shading_max, legend = TRUE)
+vcd::mosaic(college ~ is_dad_weird, data = weirddad_mod1, 
+            type = "expected", direction = "v", gp = shading_max, 
+            legend = TRUE)
+vcd::assoc(college ~ is_dad_weird, 
+           data = weirddad_mod1, 
+           gp = shading_max, 
+           legend = TRUE) 
+```
+
+The mosaic plots for gender vs is_dad_weird show a lack of strong association, indicated by the grey tiles. Through this, we could confirm that gender clearly does not play much of a role compared to college.
+
+------------------------------------------------------------------------
+
+#### Inference
+
+```{r}
+contingency_table1 <- vcd::structable(college ~ is_dad_weird, data= weirddad_mod1)
+contingency_table1
+```
+
+```{r}
+contingency_table2 <- as.table(contingency_table1)
+contingency_table2
+```
+
+```{r}
+xq_test_object <- xchisq.test(contingency_table2)
+```
+
+Reading the Pearson's Residuals:
+
+-   SMI/Yes: residual = 1.31 (more "Yes" than expected)
+
+-   SMI/No: residual = -0.79 (fewer "No" than expected)
+
+-   MIT/Yes: residual = -1.27 (fewer "Yes" than expected)
+
+-   MIT/No: residual = 0.76 (more "No" than expected)
+
+```{r}
+xq_test_object %>%
+  broom::tidy() %>%
+  select(statistic) %>%
+  as.numeric() -> X_squared_observed
+X_squared_observed
+```
+
+```{r}
+# Determine the Chi-Square critical value
+X_squared_critical <- qchisq(
+  p = .05,
+  df = (2 - 1) * (2 - 1), 
+  lower.tail = FALSE
+)
+X_squared_critical
+```
+
+Here, the observed chi-squared is 3.420189 and the chi-squared critical is 3.841459. Because the observed value is not higher than the critical value, we cannot prove that there is a statistically significant relationship between college and the weirdness of their dads.
+
+```{r}
+mosaic::xqchisq(
+  p = 0.95, df = 1,
+  return = c("plot"), verbose = F,
+  system = "gg"
+) %>%
+  gf_labs(
+    x = "F value", title = "Critical and Observed Chi-Square Values"
+  ) %>%
+  gf_vline(
+    xintercept = X_squared_observed,
+    color = "red", linewidth = 1
+  ) %>%
+  gf_vline(
+    xintercept = X_squared_critical,
+    color = "dodgerblue",
+    linewidth = 1
+  ) %>%
+  gf_annotate(
+    x = X_squared_observed -1.5, y = 0.35,
+    geom = "label", label = "Observed\n Chi-Square",
+    fill = "red", alpha = 0.3
+  ) %>%
+  gf_annotate("curve", X_squared_observed - 1.5,
+    y = 0.30, yend = 0.15,
+    xend = X_squared_observed - 0.2,
+    linewidth = 0.5, curvature = 0.3,
+    arrow = arrow(length = unit(0.25, "cm"))
+  ) %>%
+  gf_annotate(
+    x = X_squared_critical + 1.5, y = 0.35,
+    geom = "label", label = "Critical\n Chi-Square",
+    fill = "lightblue"
+  ) %>%
+  gf_annotate("curve", X_squared_critical + 1.5,
+    y = 0.30, yend = 0.15,
+    xend = X_squared_critical + 0.2,
+    linewidth = 0.5, curvature = -0.3,
+    arrow = arrow(length = unit(0.25, "cm"))
+  ) %>%
+  gf_refine(
+    scale_y_continuous(expand = expansion(add = c(0, 0.01))),
+    scale_x_continuous(expand = expansion(add = c(0, 1)))
+  )
+
+```
+
+The gap between the red and blue lines shows that the data was close to being statistically significant but fell short by 0.42 points. Although our EDA shows a clear trend, this could be due to chance. More data is needed.
+
+------------------------------------------------------------------------
+
+### Conclusion
+
+SMI students are more likely to describe their dads as weird than MIT students, but the difference is not statistically significant (chi-squared-test = 3.42 \< 3.84). Gender also shows no clear association, as indicated by the grey mosaic plot. Overall, college seems to influence responses more than gender, though more data is needed to confirm this trend.
