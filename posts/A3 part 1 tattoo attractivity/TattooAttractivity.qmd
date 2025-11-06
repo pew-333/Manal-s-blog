@@ -1,5 +1,5 @@
 ---
-title: "TattooAttractivity"
+title: "A3 part 1: Tattoo Attractivity"
 format: html
 ---
 
@@ -56,7 +56,7 @@ library(ggplot2)
 #### Reading The Data
 
 ```{r}
-Tattoo <- readr::read_delim("~/Downloads/Datasets for A3/tattooAttraction.csv") %>% 
+Tattoo <- readr::read_delim("~/Documents/irritating Class FOSEDA/Manal's blog/posts/data/tattooAttraction.csv") %>% 
   janitor::clean_names(case = "snake") %>% 
   dplyr::glimpse()
 

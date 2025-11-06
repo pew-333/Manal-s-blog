@@ -1,5 +1,5 @@
 ---
-title: "weirddad"
+title: "A3 part 3: weird dad"
 format: html
 ---
 
@@ -56,7 +56,7 @@ library(ggplot2)
 #### Reading the Data
 
 ```{r}
-Weirddad <- readr::read_delim("~/Downloads/Datasets for A3/weirddads.csv") %>% 
+Weirddad <- readr::read_delim("~/Documents/irritating Class FOSEDA/Manal's blog/posts/data/weirddads.csv") %>% 
   janitor::clean_names(case = "snake") %>% 
   dplyr::glimpse()
 

@@ -1,5 +1,5 @@
 ---
-title: "tvseries"
+title: "A3 part 2: tv series"
 format: html
 ---
 
@@ -23,14 +23,11 @@ Qualitative Variables
 
     -   **big_bang_theory:** Numeric indicating the rating for the show "big bang theory" from 1-10.
 
-## Our questions/ assumptions before performing EDA:
-
--   
--   
+## 
 
 ------------------------------------------------------------------------
 
-#### Setting up the libraries
+-   Setting up the libraries
 
 ```{r}
 library(tidyverse)
@@ -58,8 +55,9 @@ library(ggplot2)
 ```
 
 #### Reading The Data
+
 ```{r}
-Tvseries <- readr::read_delim("~/Downloads/Datasets for A3/tvseries.csv") %>% 
+Tvseries <- readr::read_delim("~/Documents/irritating Class FOSEDA/Manal's blog/posts/data/tvseries.csv") %>% 
   janitor::clean_names(case = "snake") %>% 
   dplyr::glimpse()
 
@@ -73,6 +71,7 @@ Tvseries
   visdat::vis_miss(Tvseries)
 
 ```
+
 2.3% of the data is missing, We can do away with these.
 
 ### Data Munging:
@@ -95,7 +94,6 @@ TVseries_mod2 <- Tvseries_mod1 %>%
 TVseries_mod2
 
 ```
-
 
 ```{r}
 gf_jitter(Rating ~ TVshow,

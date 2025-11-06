@@ -1,5 +1,5 @@
 ---
-title: "beliefingod"
+title: "A3 part 5: belief in god"
 format: html
 ---
 
@@ -54,7 +54,7 @@ library(ggplot2)
 #### Reading the Data
 
 ```{r}
-Godbelief <- readr::read_delim("~/Downloads/Datasets for A3/believeingod.csv") %>% 
+Godbelief <- readr::read_delim("~/Documents/irritating Class FOSEDA/Manal's blog/posts/data/believeingod.csv") %>% 
   janitor::clean_names(case = "snake") %>% 
   dplyr::glimpse()
 

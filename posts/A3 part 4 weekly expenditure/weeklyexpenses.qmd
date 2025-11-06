@@ -1,5 +1,5 @@
 ---
-title: "weeklyexpenses"
+title: "A3 part 4: weekly expenditure"
 format: html
 ---
 
@@ -56,7 +56,7 @@ library(ggplot2)
 #### Reading The Data
 
 ```{r}
-Weeklyexp <- readr::read_delim("~/Downloads/Datasets for A3/weeklyexpense.csv") %>% 
+Weeklyexp <- readr::read_delim("~/Documents/irritating Class FOSEDA/Manal's blog/posts/data/weeklyexpense.csv") %>% 
   janitor::clean_names(case = "snake") %>% 
   dplyr::glimpse()
 
@@ -120,7 +120,7 @@ For male students,primary density peak at ₹2,000-₹4,000. But the distributio
 
 -   Extreme spenders (₹50K+) - rare cases
 
-----------------------------
+------------------------------------------------------------------------
 
 ## Is data normally distributed??
 
@@ -134,17 +134,19 @@ Weeklyexp1%>%
   )
 
 ```
-The data is far from the normality curve. This is a severe violation of the normality assumptions. Most students spend very little, but the few high spenders are SO extreme that they pull the theoretical normal distribution way to the right, making it completely misaligned with reality.
 
+The data is far from the normality curve. This is a severe violation of the normality assumptions. Most students spend very little, but the few high spenders are SO extreme that they pull the theoretical normal distribution way to the right, making it completely misaligned with reality.
 
 ```{r}
 stats::shapiro.test(x = Weeklyexp1$total_expenditure_last_week) %>%
   broom::tidy()
 
 ```
+
 Since the p.value is EXTREMELY small, we should reject the null hypothesis that the data follows a normal distribution.
 
 We ideally should not be running a t-test because of the above reasons:
+
 ```{r}
 t4 <- mosaic::t_test(
   Weeklyexp1$total_expenditure_last_week, # Name of variable
@@ -155,9 +157,9 @@ t4 <- mosaic::t_test(
 t4
 
 ```
------------------------
+
+------------------------------------------------------------------------
+
 ### Conclusion:
 
 The data shows that Srishti students’ Diwali week spending is highly right-skewed, with most spending modest amounts and a few outliers spending very large sums. Males generally spent more than females, but the variation within the male group is much higher. The distribution clearly violates normality assumptions, as confirmed by the Shapiro–Wilk test.
-
-
